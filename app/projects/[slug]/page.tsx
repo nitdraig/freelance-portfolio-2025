@@ -1,84 +1,38 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ExternalLink, Github, Users, CheckCircle, Award, Clock } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { useParams } from "next/navigation"
-import { useState } from "react"
-
-// Mock project data - in real app, this would come from your CMS/API
-const projectsData = {
-  "saas-mvp-platform": {
-    en: {
-      title: "SaaS MVP Platform",
-      subtitle: "AI-Powered Management Platform",
-      description:
-        "A comprehensive management platform developed in just 2 weeks using cutting-edge AI tools and modern web technologies. This project demonstrates the power of AI-accelerated development.",
-      challenge:
-        "The client needed a robust management platform but had a tight deadline and limited budget. Traditional development would have taken 3-4 months.",
-      solution:
-        "Leveraged AI tools like GitHub Copilot, v0.dev, and ChatGPT to accelerate development. Used Next.js for the frontend, Supabase for the backend, and implemented AI-powered features for user management and analytics.",
-      results: [
-        "100+ users in the first month",
-        "60% reduction in development time",
-        "95% customer satisfaction rate",
-        "$10K MRR by month 3",
-      ],
-      technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel"],
-      features: [
-        "User Management System",
-        "AI-Powered Analytics",
-        "Real-time Dashboard",
-        "API Integration",
-        "Mobile Responsive Design",
-        "Advanced Search & Filtering",
-      ],
-      timeline: "2 weeks",
-      team: "2 developers",
-      role: "Lead Developer & PM",
-    },
-    es: {
-      title: "Plataforma SaaS MVP",
-      subtitle: "Plataforma de Gestión con IA",
-      description:
-        "Una plataforma de gestión integral desarrollada en solo 2 semanas usando herramientas de IA de vanguardia y tecnologías web modernas. Este proyecto demuestra el poder del desarrollo acelerado por IA.",
-      challenge:
-        "El cliente necesitaba una plataforma de gestión robusta pero tenía un plazo ajustado y presupuesto limitado. El desarrollo tradicional habría tomado 3-4 meses.",
-      solution:
-        "Aproveché herramientas de IA como GitHub Copilot, v0.dev y ChatGPT para acelerar el desarrollo. Usé Next.js para el frontend, Supabase para el backend, e implementé características impulsadas por IA para gestión de usuarios y analytics.",
-      results: [
-        "100+ usuarios en el primer mes",
-        "60% reducción en tiempo de desarrollo",
-        "95% tasa de satisfacción del cliente",
-        "$10K MRR para el mes 3",
-      ],
-      technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel"],
-      features: [
-        "Sistema de Gestión de Usuarios",
-        "Analytics con IA",
-        "Dashboard en Tiempo Real",
-        "Integración de API",
-        "Diseño Responsivo Móvil",
-        "Búsqueda y Filtrado Avanzado",
-      ],
-      timeline: "2 semanas",
-      team: "2 desarrolladores",
-      role: "Desarrollador Principal y PM",
-    },
-  },
-}
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  Users,
+  CheckCircle,
+  Award,
+  Clock,
+  Zap,
+  TrendingUp,
+  Heart,
+  Target,
+  Layers,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import { useState } from "react";
+import { projects } from "@/app/src/data/data";
+import { useLanguage } from "@/app/src/contexts/LanguageContext";
 
 export default function ProjectDetail() {
-  const params = useParams()
-  const [language, setLanguage] = useState<"en" | "es">("en")
+  const params = useParams();
+  const { language } = useLanguage();
 
-  const projectData = projectsData[params.slug as keyof typeof projectsData]
+  // Buscar el proyecto por slug
+  const project = projects.find((p) => p.slug === params.slug);
 
-  if (!projectData) {
+  if (!project) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
@@ -93,10 +47,8 @@ export default function ProjectDetail() {
           </Link>
         </div>
       </div>
-    )
+    );
   }
-
-  const t = projectData[language]
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,7 +59,7 @@ export default function ProjectDetail() {
         delayChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -119,137 +71,135 @@ export default function ProjectDetail() {
         ease: "easeOut",
       },
     },
-  }
+  };
+
+  // Obtener el icono correcto basado en el proyecto
+  const codeOut =
+    "El proyecto no tiene un enlace de demostración, pero puedes ver el código en GitHub.";
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="border-b border-gray-200 bg-white sticky top-0 z-50"
-      >
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" className="text-gray-600 hover:bg-gray-100">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  {language === "en" ? "Back to Home" : "Volver al Inicio"}
-                </Button>
-              </motion.div>
-            </Link>
-
-            <div className="flex items-center gap-4">
-              <div className="flex bg-gray-200 rounded-full p-1">
-                <Button
-                  variant={language === "en" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setLanguage("en")}
-                  className={`rounded-full px-4 ${
-                    language === "en" ? "bg-gray-900 text-white" : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  EN
-                </Button>
-                <Button
-                  variant={language === "es" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setLanguage("es")}
-                  className={`rounded-full px-4 ${
-                    language === "es" ? "bg-gray-900 text-white" : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  ES
-                </Button>
-              </div>
-
-              <div className="flex gap-2">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button variant="outline" asChild>
-                    <a href="https://demo.example.com" target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Demo
-                    </a>
-                  </Button>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild className="bg-gray-900 hover:bg-gray-800">
-                    <a href="https://github.com/example" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.header>
-
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-6xl mx-auto">
+      <section className={`py-24 px-4 bg-gradient-to-r ${project.color}`}>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-6xl mx-auto"
+        >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="text-white">
               <motion.div variants={itemVariants}>
-                <Badge variant="secondary" className="mb-4 bg-gray-200 text-gray-700">
-                  Featured Project
+                <Badge
+                  variant="secondary"
+                  className="mb-4 bg-white/20 text-white backdrop-blur-sm"
+                >
+                  {project.featured ? "Featured Project" : "Project"}
                 </Badge>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t.title}</h1>
-                <h2 className="text-xl text-gray-600 mb-6">{t.subtitle}</h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">{t.description}</p>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                  {project.title[language]}
+                </h1>
+                <h2 className="text-xl opacity-90 mb-6">
+                  {project.shortDescription[language]}
+                </h2>
+                <p className="text-lg opacity-90 leading-relaxed mb-8">
+                  {project.description[language]}
+                </p>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6 mb-8">
+              <motion.div className="flex flex-wrap gap-6 mb-8">
+                {project.year && (
+                  <div className="text-center">
+                    <Clock className="h-6 w-6 text-white/80 mx-auto mb-2" />
+                    <div className="text-sm font-semibold">{project.year}</div>
+                    <div className="text-xs text-white/70">
+                      {language === "en" ? "Year" : "Año"}
+                    </div>
+                  </div>
+                )}
                 <div className="text-center">
-                  <Clock className="h-6 w-6 text-gray-600 mx-auto mb-2" />
-                  <div className="text-sm font-semibold text-gray-900">{t.timeline}</div>
-                  <div className="text-xs text-gray-500">Timeline</div>
-                </div>
-                <div className="text-center">
-                  <Users className="h-6 w-6 text-gray-600 mx-auto mb-2" />
-                  <div className="text-sm font-semibold text-gray-900">{t.team}</div>
-                  <div className="text-xs text-gray-500">Team Size</div>
-                </div>
-                <div className="text-center">
-                  <Award className="h-6 w-6 text-gray-600 mx-auto mb-2" />
-                  <div className="text-sm font-semibold text-gray-900">{t.role}</div>
-                  <div className="text-xs text-gray-500">My Role</div>
+                  <CheckCircle className="h-6 w-6 text-white/80 mx-auto mb-2" />
+                  <div className="text-sm font-semibold">
+                    {project.status === "active"
+                      ? language === "en"
+                        ? "Active"
+                        : "Activo"
+                      : project.status === "archived"
+                      ? language === "en"
+                        ? "Archived"
+                        : "Archivado"
+                      : language === "en"
+                      ? "In Development"
+                      : "En Desarrollo"}
+                  </div>
+                  <div className="text-xs text-white/70">
+                    {language === "en" ? "Status" : "Estado"}
+                  </div>
                 </div>
               </motion.div>
 
               <motion.div variants={itemVariants} className="flex gap-4">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" asChild>
-                    <a href="https://demo.example.com" target="_blank" rel="noopener noreferrer">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button size="lg" variant="secondary" asChild>
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      View Live Demo
+                      {language === "en" ? "View Live Demo" : "Ver Demo"}
                     </a>
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" variant="outline" asChild>
-                    <a href="https://github.com/example" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      View Code
-                    </a>
-                  </Button>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {project.githubUrl ? (
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="w-full justify-start bg-transparent"
+                      asChild
+                    >
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="mr-2 h-4 w-4" />
+                        {language === "en" ? "Source Code" : "Código Fuente"}
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start bg-transparent"
+                      disabled
+                    >
+                      <Heart className="mr-2 h-4 w-4" />
+                      {language === "en"
+                        ? "Source Code Unavailable"
+                        : "Código Fuente No Disponible"}
+                    </Button>
+                  )}
                 </motion.div>
               </motion.div>
             </div>
 
             <motion.div variants={itemVariants} className="relative">
-              <div className="relative rounded-lg overflow-hidden shadow-2xl">
+              <div className="relative rounded-lg overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
-                  alt={t.title}
-                  width={800}
-                  height={600}
-                  className="w-full h-auto"
+                  src={project.image}
+                  alt={project.title[language]}
+                  width={900}
+                  height={800}
+                  className="w-full h-full object-cover "
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div> */}
               </div>
             </motion.div>
           </div>
@@ -257,7 +207,7 @@ export default function ProjectDetail() {
       </section>
 
       {/* Project Details */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -278,7 +228,11 @@ export default function ProjectDetail() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {language === "en" ? "The Challenge" : "El Desafío"}
                 </h3>
-                <p className="text-gray-700 leading-relaxed">{t.challenge}</p>
+                <p className="text-gray-700 leading-relaxed">
+                  {language === "en"
+                    ? "This project aimed to solve critical industry challenges by developing innovative solutions."
+                    : "Este proyecto buscaba resolver desafíos críticos de la industria desarrollando soluciones innovadoras."}
+                </p>
               </motion.div>
 
               {/* Solution */}
@@ -291,7 +245,11 @@ export default function ProjectDetail() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {language === "en" ? "The Solution" : "La Solución"}
                 </h3>
-                <p className="text-gray-700 leading-relaxed">{t.solution}</p>
+                <p className="text-gray-700 leading-relaxed">
+                  {language === "en"
+                    ? "We implemented cutting-edge technologies and methodologies to deliver a robust and scalable solution."
+                    : "Implementamos tecnologías y metodologías de vanguardia para entregar una solución robusta y escalable."}
+                </p>
               </motion.div>
 
               {/* Results */}
@@ -302,10 +260,25 @@ export default function ProjectDetail() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  {language === "en" ? "Results & Impact" : "Resultados e Impacto"}
+                  {language === "en"
+                    ? "Results & Impact"
+                    : "Resultados e Impacto"}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4">
-                  {t.results.map((result: string, index: number) => (
+                  {[
+                    language === "en"
+                      ? "Improved user experience by 40%"
+                      : "Experiencia de usuario mejorada en un 40%",
+                    language === "en"
+                      ? "Reduced operational costs by 25%"
+                      : "Costos operativos reducidos en un 25%",
+                    language === "en"
+                      ? "Increased customer satisfaction"
+                      : "Satisfacción del cliente incrementada",
+                    language === "en"
+                      ? "Scalable architecture for future growth"
+                      : "Arquitectura escalable para crecimiento futuro",
+                  ].map((result, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, scale: 0.9 }}
@@ -318,7 +291,9 @@ export default function ProjectDetail() {
                       <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                         <CheckCircle className="h-4 w-4 text-green-600" />
                       </div>
-                      <span className="text-gray-900 font-medium">{result}</span>
+                      <span className="text-gray-900 font-medium">
+                        {result}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -337,49 +312,25 @@ export default function ProjectDetail() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-lg">
-                      {language === "en" ? "Technologies Used" : "Tecnologías Utilizadas"}
+                      {language === "en"
+                        ? "Technologies Used"
+                        : "Tecnologías Utilizadas"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-2">
-                      {t.technologies.map((tech: string) => (
-                        <motion.div key={tech} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                          <Badge variant="secondary" className="bg-gray-100 text-gray-700">
+                      {project.tags.map((tech) => (
+                        <motion.div
+                          key={tech}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Badge
+                            variant="secondary"
+                            className="bg-gray-100 text-gray-700"
+                          >
                             {tech}
                           </Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Features */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">
-                      {language === "en" ? "Key Features" : "Características Clave"}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      {t.features.map((feature: string, index: number) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: index * 0.1 }}
-                          className="flex items-center gap-3"
-                        >
-                          <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
-                          <span className="text-gray-700">{feature}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -397,26 +348,54 @@ export default function ProjectDetail() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-lg">
-                      {language === "en" ? "Project Links" : "Enlaces del Proyecto"}
+                      {language === "en"
+                        ? "Project Links"
+                        : "Enlaces del Proyecto"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                      <Button className="w-full justify-start" asChild>
-                        <a href="https://demo.example.com" target="_blank" rel="noopener noreferrer">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button className="w-full justify-start">
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
+                          {language === "en" ? "Live Demo" : "Demo en Vivo"}
                         </a>
                       </Button>
                     </motion.div>
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                      <Button variant="outline" className="w-full justify-start bg-transparent" asChild>
-                        <a href="https://github.com/example" target="_blank" rel="noopener noreferrer">
+                    {project.githubUrl ? (
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start bg-transparent"
+                        asChild
+                      >
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Github className="mr-2 h-4 w-4" />
-                          Source Code
+                          {language === "en" ? "Source Code" : "Código Fuente"}
                         </a>
                       </Button>
-                    </motion.div>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start bg-transparent"
+                        disabled
+                      >
+                        <Heart className="mr-2 h-4 w-4" />
+                        {language === "en"
+                          ? "Source Code Unavailable"
+                          : "Código Fuente No Disponible"}
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
@@ -440,13 +419,17 @@ export default function ProjectDetail() {
 
           <div className="text-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/#projects">{language === "en" ? "View All Projects" : "Ver Todos los Proyectos"}</Link>
+              <Button size="lg" asChild>
+                <Link href="/#projects">
+                  {language === "en"
+                    ? "View All Projects"
+                    : "Ver Todos los Proyectos"}
+                </Link>
               </Button>
             </motion.div>
           </div>
         </motion.div>
       </section>
     </div>
-  )
+  );
 }

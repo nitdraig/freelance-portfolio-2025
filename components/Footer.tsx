@@ -8,9 +8,16 @@ import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Mail, Linkedin, Github } from "lucide-react";
-import { content } from "@/app/src/data/data";
 
 const Footer = () => {
+  const socials = [
+    { icon: Github, url: "https://github.com/nitdraig" },
+    {
+      icon: Linkedin,
+      url: "https://www.linkedin.com/in/avellaneda-agustín-tns/",
+    },
+    { icon: Mail, url: "me@agustin.top" },
+  ];
   return (
     <motion.footer
       initial={{ opacity: 0 }}
@@ -41,7 +48,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex gap-4"
           >
-            {[Github, Linkedin, Mail].map((Icon, index) => (
+            {socials.map(({ icon: Icon, url }, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.1, y: -2 }}
@@ -50,7 +57,8 @@ const Footer = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-gray-600 hover:bg-gray-100"
+                  onClick={() => window.open(url, "_blank")}
+                  className="text-white bg-black hover:border hover:bg-white/10 backdrop-blur-sm"
                 >
                   <Icon className="h-5 w-5" />
                 </Button>

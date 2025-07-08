@@ -6,27 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import {
-  Code,
-  Rocket,
-  Users,
-  ArrowRight,
-  Mail,
-  Linkedin,
-  Github,
-  Star,
-  Brain,
-  TrendingUp,
-} from "lucide-react";
-import Link from "next/link";
+import { Code, Rocket, Users } from "lucide-react";
 
 const AboutSection = ({ language }: any) => {
+  const skillsEs = ["Liderazgo", "Escalado", "Estrategia", "Ventas"];
+  const skillsEn = ["Leadership", "Scaling", "Strategy", "Sales"];
   return (
     <motion.section
       id="about"
@@ -62,7 +47,7 @@ const AboutSection = ({ language }: any) => {
             transition={{ duration: 0.6 }}
             whileHover={{ y: -5 }}
           >
-            <Card className="border-gray-200 shadow-sm hover:shadow-md transition-shadow h-full">
+            <Card className="border-gray-400 shadow-sm hover:shadow-md transition-shadow h-full">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-4">
                   <motion.div
@@ -117,7 +102,7 @@ const AboutSection = ({ language }: any) => {
             transition={{ duration: 0.6, delay: 0.2 }}
             whileHover={{ y: -5 }}
           >
-            <Card className="border-gray-200 shadow-sm hover:shadow-md transition-shadow h-full">
+            <Card className="border-gray-400 shadow-sm hover:shadow-md transition-shadow h-full">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-4">
                   <motion.div
@@ -139,9 +124,10 @@ const AboutSection = ({ language }: any) => {
                     : "I lead teams, scale products and manage the entire process from idea to launch."}
                 </CardDescription>
               </CardHeader>
+
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {["Liderazgo", "Escalado", "Estrategia", "Ventas"].map(
+                  {(language === "es" ? skillsEs : skillsEn).map(
                     (skill, index) => (
                       <motion.div
                         key={skill}

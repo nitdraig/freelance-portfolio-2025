@@ -8,7 +8,7 @@ import { useLanguage } from "@/app/src/contexts/LanguageContext";
 const Navbar = () => {
   const { language, toggleLanguage } = useLanguage();
   return (
-    <header className="sticky top-0 z-50 w-full  bg-gray-900 backdrop-blur supports-[backdrop-filter]:bg-[ #1C1124]/60">
+    <header className="fixed top-0 z-50 w-full  bg-gray-900 backdrop-blur supports-[backdrop-filter]:bg-[ #1C1124]/60">
       <div className="container text-[#E5E5E5] px-10 flex h-16 items-center justify-between">
         <Link href="/#" className="flex items-center gap-2 font-bold text-xl">
           <Image
@@ -23,27 +23,28 @@ const Navbar = () => {
         <nav className="hidden md:flex gap-6">
           <Link
             href="/#about"
-            className="text-sm font-medium hover:text-[#A78EC4] transition-colors"
+            className="text-md font-medium hover:text-[#A78EC4] transition-colors"
           >
-            About
+            {language === "es" ? <>Yo</> : <>Me</>}
           </Link>
           <Link
             href="/#projects"
-            className="text-sm font-medium hover:text-[#A78EC4] transition-colors"
+            className="text-md font-medium hover:text-[#A78EC4] transition-colors"
           >
-            Projects
+            {language === "es" ? <>Casos de éxito</> : <>Success Cases</>}
           </Link>
-          <Link
-            href="/#experience"
-            className="text-sm font-medium hover:text-[#A78EC4] transition-colors"
-          >
-            Experience
-          </Link>
+
           <Link
             href="/#contact"
-            className="text-sm font-medium hover:text-[#A78EC4] transition-colors"
+            className="text-md font-medium hover:text-[#A78EC4] transition-colors"
           >
-            Contact
+            {language === "es" ? <> Contactarme</> : <>Contact</>}
+          </Link>
+          <Link
+            href="/#blogs"
+            className="text-md font-medium hover:text-[#A78EC4] transition-colors"
+          >
+            Blogs
           </Link>
         </nav>
 
@@ -54,8 +55,8 @@ const Navbar = () => {
             onClick={toggleLanguage}
             className={`rounded-full px-4 ${
               language === "en"
-                ? "bg-white text-gray-900"
-                : "text-white hover:bg-white/10"
+                ? "bg-white text-gray-900 hover:text-white/90"
+                : "text-white hover:bg-black hover:text-white "
             }`}
           >
             EN
@@ -66,8 +67,8 @@ const Navbar = () => {
             onClick={toggleLanguage}
             className={`rounded-full px-4 ${
               language === "es"
-                ? "bg-white text-gray-900"
-                : "text-white hover:bg-white/10"
+                ? "bg-white text-gray-900 hover:text-white/90"
+                : "text-white hover:bg-black hover:text-white "
             }`}
           >
             ES

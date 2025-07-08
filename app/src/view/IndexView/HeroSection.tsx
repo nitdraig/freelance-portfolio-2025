@@ -9,7 +9,6 @@ import {
   Linkedin,
   Github,
   MapPin,
-  Download,
   Code,
   Brain,
   Rocket,
@@ -52,7 +51,14 @@ export function HeroSection({ language }: any) {
       },
     },
   };
-
+  const socials = [
+    { icon: Github, url: "https://github.com/nitdraig" },
+    {
+      icon: Linkedin,
+      url: "https://www.linkedin.com/in/avellaneda-agustín-tns/",
+    },
+    { icon: Mail, url: "me@agustin.top" },
+  ];
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -72,7 +78,7 @@ export function HeroSection({ language }: any) {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-20 max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center"
+        className="relative lg:my-24 mt-24 z-20 max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center"
       >
         {/* Left Column - Text Content */}
         <div className="text-white">
@@ -107,7 +113,7 @@ export function HeroSection({ language }: any) {
             </motion.h2>
             <motion.p
               variants={itemVariants}
-              className="text-xl text-white/80 mb-4 leading-relaxed max-w-2xl"
+              className="text-xl text-white/80 mb-4 leading-relaxed max-w-3xl"
             >
               {language === "es" ? (
                 <>
@@ -123,7 +129,6 @@ export function HeroSection({ language }: any) {
               )}
             </motion.p>
           </motion.div>
-
           {/* Stats */}
           <motion.div
             variants={itemVariants}
@@ -131,7 +136,7 @@ export function HeroSection({ language }: any) {
           >
             {[
               {
-                number: "5+",
+                number: "4+",
                 label: (
                   <>
                     {language === "es" ? (
@@ -143,7 +148,7 @@ export function HeroSection({ language }: any) {
                 ),
               },
               {
-                number: "50+",
+                number: "20+",
                 label: (
                   <>
                     {language === "es" ? (
@@ -154,18 +159,18 @@ export function HeroSection({ language }: any) {
                   </>
                 ),
               },
-              {
-                number: "25+",
-                label: (
-                  <>
-                    {language === "es" ? (
-                      <>Clientes satisfechos</>
-                    ) : (
-                      <> Satisfied Clients</>
-                    )}
-                  </>
-                ),
-              },
+              // {
+              //   number: "5+",
+              //   label: (
+              //     <>
+              //       {language === "es" ? (
+              //         <>Clientes satisfechos</>
+              //       ) : (
+              //         <> Satisfied Clients</>
+              //       )}
+              //     </>
+              //   ),
+              // },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -184,7 +189,6 @@ export function HeroSection({ language }: any) {
               </motion.div>
             ))}
           </motion.div>
-
           {/* Location */}
           <motion.div
             variants={itemVariants}
@@ -193,7 +197,6 @@ export function HeroSection({ language }: any) {
             <MapPin className="h-4 w-4" />
             <span> Catamarca, Argentina 🇦🇷</span>
           </motion.div>
-
           {/* CTAs */}
           <motion.div
             variants={itemVariants}
@@ -203,6 +206,12 @@ export function HeroSection({ language }: any) {
               <Button
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-8"
+                onClick={() => {
+                  const element = document.getElementById("projects");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
               >
                 <>
                   {language === "es" ? (
@@ -218,7 +227,13 @@ export function HeroSection({ language }: any) {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white/10 font-semibold px-8 bg-transparent backdrop-blur-sm"
+                onClick={() => {
+                  const element = document.getElementById("contact");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="border-white text-white hover:bg-white/80 font-semibold px-8 bg-transparent backdrop-blur-sm"
               >
                 {language === "es" ? <>Hablemos!</> : <>Let's talk!</>}
               </Button>
@@ -234,10 +249,9 @@ export function HeroSection({ language }: any) {
               </Button>
             </motion.div> */}
           </motion.div>
-
           {/* Social Links */}
           <motion.div variants={itemVariants} className="flex gap-4">
-            {[Github, Linkedin, Mail].map((Icon, index) => (
+            {socials.map(({ icon: Icon, url }, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.1, y: -2 }}
@@ -246,6 +260,7 @@ export function HeroSection({ language }: any) {
                 <Button
                   variant="ghost"
                   size="icon"
+                  onClick={() => window.open(url, "_blank")}
                   className="text-white hover:bg-white/10 backdrop-blur-sm"
                 >
                   <Icon className="h-5 w-5" />

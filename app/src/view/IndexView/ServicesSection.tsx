@@ -32,7 +32,7 @@ const ServicesSection = ({ language }: any) => {
             {language === "es" ? (
               <>
                 {" "}
-                Transformo ideas en productos funcionales usando IA y gestiono
+                Transformo ideas en productos funcionales usando IA, gestionando
                 todo el proceso de lanzamiento.
               </>
             ) : (
@@ -64,8 +64,8 @@ const ServicesSection = ({ language }: any) => {
                   {language === "es" ? (
                     <>
                       {" "}
-                      Rapido desarrollo de productos minimos de mercado usando
-                      herramientas de IA para acelerar el proceso
+                      Rápido desarrollo de productos mínimos de mercado usando
+                      herramientas de IA para acelerar el proceso.
                     </>
                   ) : (
                     <>
@@ -93,13 +93,13 @@ const ServicesSection = ({ language }: any) => {
                   {" "}
                   {language === "es" ? (
                     <>
-                      Me encargo de todo el proceso desde el desarrollo hasta la
-                      primera venta
+                      Me encargo de todo el proceso desde el desarrollo el
+                      mantenimiento y escalado.
                     </>
                   ) : (
                     <>
-                      I manage the entire process from development to launch and
-                      first sales.
+                      I take care of the whole process from development and
+                      scaling.
                     </>
                   )}
                 </>
@@ -121,7 +121,7 @@ const ServicesSection = ({ language }: any) => {
                   {language === "es" ? (
                     <>
                       Ayudo a escalar el producto, liderar equipos y establecer
-                      estrategias de crecimiento
+                      estrategias de crecimiento.
                     </>
                   ) : (
                     <>
