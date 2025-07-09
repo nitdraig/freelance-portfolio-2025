@@ -3,7 +3,7 @@ import "./globals.css";
 import { Raleway } from "next/font/google";
 const raleway = Raleway({ subsets: ["latin"], weight: "400" });
 export const metadata: Metadata = {
-  title: "Avellaneda Agustín | Desarrollador Web Freelance",
+  title: "Avellaneda Agustín | AI-Powered Fullstack Developer & PM",
   description:
     "Soy Avellaneda Agustín, un Desarrollador web Fullstack y QA-Tester de Argentina, con experiencia en el desarrollo de páginas web modernas, interactivas y robustas. Ofrezco servicios de desarrollo web freelance, consultoría tecnológica y gestión de e-commerce. ¡Contáctame para llevar tu proyecto al siguiente nivel!",
   keywords: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Avellaneda Agustín | Desarrollador Web Freelance ",
+    title: "Avellaneda Agustín | AI-Powered Fullstack Developer & PM ",
     description:
       "Soy Avellaneda Agustín, un Desarrollador web Fullstack y QA-Tester de Argentina, con experiencia en el desarrollo de páginas web modernas, interactivas y robustas. Ofrezco servicios de desarrollo web freelance, consultoría tecnológica y gestión de e-commerce. ¡Contáctame para llevar tu proyecto al siguiente nivel!",
     creator: "Avellaneda Agustín",
@@ -50,10 +50,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://agustin.top",
-    title: "Avellaneda Agustín | Desarrollador Web Freelance ",
+    title: "Avellaneda Agustín | AI-Powered Fullstack Developer & PM ",
     description:
       "Soy Avellaneda Agustín, un Desarrollador web Fullstack y QA-Tester de Argentina, con experiencia en el desarrollo de páginas web modernas, interactivas y robustas. Ofrezco servicios de desarrollo web freelance, consultoría tecnológica y gestión de e-commerce. ¡Contáctame para llevar tu proyecto al siguiente nivel!",
-    siteName: "Avellaneda Agustín | Desarrollador Web Freelance",
+    siteName: "Avellaneda Agustín | AI-Powered Fullstack Developer & PM",
     images: [
       {
         url: "https://res.cloudinary.com/draig/image/upload/v1710351881/portolio-personal/qhiyj8j4vtfugkotdqnr.png",
