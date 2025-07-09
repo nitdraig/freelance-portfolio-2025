@@ -14,8 +14,8 @@ export const projects = [
       es: "Sigii App | Transformando la experiencia de aprendizaje",
     },
     shortDescription: {
-      en: "Transforming the learning experience into your institution with our personalized educational platform.",
-      es: "Transformando la experiencia de aprendizaje en su institución con nuestra plataforma educativa personalizada.",
+      en: "Comprehensive system for the management of smart institutions",
+      es: "Sistema Integral para la Gestion de Instituciones Inteligentes",
     },
     description: {
       en: "Web platform developed for management of institutions, teachers, and students focused on public schools, private and university education. It is part of a larger ecosystem that seeks to facilitate the integration of talents into modernity.",
@@ -23,11 +23,34 @@ export const projects = [
     },
     icon: Layers,
     color: "from-blue-700 to-gray-600",
-    tags: ["Next.js", "Tailwind", "TypeScript", "Express"],
+    tags: ["Next.js", "Tailwind", "TypeScript", "Express", "MongoDB"],
     image:
       "https://res.cloudinary.com/draig/image/upload/v1751938412/excelso/sigii/imagen_2025-07-07_223330718_ikhfnm.png",
     demoUrl: "https://sigii.tips",
-
+    challenge: {
+      es: "Construir en un mes una plataforma de gestión institucional completa que contenga herramientas interconectadas formando un ecosistema integral que permita abordar cada etapa del desarrollo humano.",
+      en: "Build in a month a complete institutional management platform containing interconnected tools forming an integral ecosystem that allows each stage of human development to be addressed.",
+    },
+    solution: {
+      es: "MVP completo funcionando en 4 semanas, con estructura modular que permite escalar a futuro a múltiples dependencias e integrar nuevas herramientas revolucionarias.",
+      en: "Complete MVP running in 4 weeks, with modular structure that allows you to climb to multiple units and integrate new revolutionary tools.",
+    },
+    results: {
+      es: [
+        "MVP funcional en 4 semanas",
+        "Chatbots funcionales",
+        "Integración de herramientas IA",
+        "Modularidad",
+        "Escalabilidad",
+      ],
+      en: [
+        "MVP functional in 4 weeks",
+        "Functional chatbots",
+        "INTEGRATION OF TOOLS IA",
+        "Modularity",
+        "Scalability",
+      ],
+    },
     featured: false,
     year: 2024,
     status: "active",
@@ -54,6 +77,28 @@ export const projects = [
       "https://res.cloudinary.com/draig/image/upload/v1748037652/excelso/mtn/wj0t0hauytbtocgno4bx.png",
     demoUrl: "https://miningtalent.net",
     githubUrl: "https://github.com/excelso-tech",
+    challenge: {
+      es: "Conectar talento con empresas potenciadoras de talento, facilitando transacción, interacción y colaboración.",
+      en: "Connect talent with talent enhancement companies, facilitating transaction, interaction and collaboration.",
+    },
+    solution: {
+      es: "MVP funcional, escalable, que integra IA para análisis de CV, recomendación de certificaciones, preparación para entrevistas, completado de inputs de formularios de búsqueda de talento.",
+      en: "MVP functional, scalable, which integrates for CV analysis, certifications recommendation, preparation for interviews, completed in inputs of talent search forms.",
+    },
+    results: {
+      es: [
+        "MVP funcional",
+        "Correcta integración de IA",
+        "Plataforma adaptable",
+        "Constante aparición en buscadores",
+      ],
+      en: [
+        "Functional mvp",
+        "Correct integration of AI",
+        "Adaptable Platform",
+        "Constant appearance in search engines",
+      ],
+    },
     featured: true,
     status: "active",
   },
@@ -102,7 +147,27 @@ export const projects = [
     image:
       "https://res.cloudinary.com/draig/image/upload/v1743035227/portolio-personal/u7huy9ubnibs978b6pl3.png",
     demoUrl: "https://jema.excelso.xyz",
-    // githubUrl: "https://github.com/nitraig/jema",
+    challenge: {
+      es: "Crear una plataforma de dos lados, una para usuarios simples otra para entidades y/o profesionales que busquen una herramienta para la gestión de informes de impacto ambiental.",
+      en: "Create a two-sides platform, one for simple users for entities and/or professionals looking for a tool for the management of environmental impact reports.",
+    },
+    solution: {
+      es: "Plataforma completa, donde se pueden revisar diversos proyectos de extracción de recursos naturales que esten generando impacto ambiental. Y con jema IA poder generar un resumen simplificado con puntos de mejora y puntos criticos del proyecto.",
+      en: "Complete platform, where you can review various projects for the extraction of natural resources that are generating environmental impact. And with chiefs to generate a simplified summary with improvement points and critical points of the project.",
+    },
+    results: {
+      es: [
+        "MVP en menos de 8 semanas",
+        "Agente de IA integrado en el lado del cliente",
+        "Plataforma escalable",
+      ],
+      en: [
+        "MVP in less than 8 weeks",
+        "Agent of the integrated on the client's side",
+        "Scalable platform",
+      ],
+    },
+
     featured: true,
     year: 2025,
     status: "active",
@@ -128,6 +193,28 @@ export const projects = [
       "https://res.cloudinary.com/draig/image/upload/v1732390002/portolio-personal/vtk7r8pk8dt3sxozdz9s.png",
     demoUrl: "https://www.huellitasctgna.com",
     githubUrl: "https://github.com/inkua/Huellitas",
+    challenge: {
+      es: "Huellitas-CTGNA necesitaba una web para mostrar sus avances, recaudar fondos y facilitar la adopción de mascotas en la zona donde están actualmente funcionando.",
+      en: "Huellitas-CTGNA needed a website to show their progress, raise funds and facilitate the adoption of pets in the area where they are currently working.",
+    },
+    solution: {
+      es: "Se creo para Huellitas una plataforma web completa que permite mediante un CMS crear, modificar y eliminar información clave de la misma web. Mediante un diseño aprobado por el equipo de Huellitas se logro avanzar y finalizar la creación, despliegue y constante mantenimiento de la plataforma.",
+      en: "Strikes were created for Hueltes a complete web platform that allows through a CMS to create, modify and eliminate key information from the same website. Through a design approved by the Huellitas team, the creation, deployment and constant maintenance of the platform was made.",
+    },
+    results: {
+      es: [
+        "Incremento de la presencia web",
+        "Facilitación de adopción",
+        "Recaudación de fondos simplificada",
+        "Mantenimiento constante de la página",
+      ],
+      en: [
+        "Increase in web presence",
+        "Adoption facilitation",
+        "Collection of simplified funds",
+        "Constant maintenance of the page",
+      ],
+    },
     featured: false,
     year: 2024,
     status: "active",
@@ -151,9 +238,30 @@ export const projects = [
     tags: ["Nextjs", "Tailwind", "Typescript"],
     image:
       "https://res.cloudinary.com/draig/image/upload/v1709857812/freelance/dc-consultora/jeyhi2cocajc7ouv4cnx.png",
-    demoUrl: "https://roger.agustin.top",
-    githubUrl: "https://github.com/nitdraig/roger",
-    featured: false,
+    demoUrl: "https://dcconsultora.com.ar",
+
+    challenge: {
+      es: "DC consultora necesitaba un sitio exclusivo, presencia en google y un diseño adaptable a múltiples dispositivos.",
+      en: "DC consultora needed an exclusive site, presence on Google and a design adaptable to multiple devices.",
+    },
+    solution: {
+      es: "Después de reuniones con el cliente se llegó a la conclusión de que una landing page simple con un diseño único podría facilitar la presencia de la marca en la web, además de generar una impresión única.",
+      en: "After meetings with the client, it was concluded that a simple landing page with a unique design could facilitate the presence of the brand on the web, in addition to generating a unique impression.",
+    },
+    results: {
+      es: [
+        "Página web adaptable a todos los dispositivos",
+        "Incremento de la presencia de la marca en Google",
+        "Diseño exclusivo",
+        "Mantenimiento constante de la página",
+      ],
+      en: [
+        "Website adaptable to all devices",
+        "Increase in the presence of the brand in Google",
+        "Exclusive design",
+        "Page maintenance constant",
+      ],
+    },
     year: 2024,
     status: "active",
   },
@@ -177,7 +285,28 @@ export const projects = [
     image:
       "https://res.cloudinary.com/draig/image/upload/v1702086792/fuddy/fpxgbfolktuj2le7u4sf.png",
     demoUrl: "https://fuddy.click",
-
+    challenge: {
+      es: "La creciente falta de información clara, económica y accesible sobre nutrición, alimentación y creación de recetas hacia necesaria la creación de una herramienta que usara tecnología moderna.",
+      en: "The growing lack of clear, economical and accessible information on nutrition, food and creation of recipes towards the creation of a tool that will use modern technology.",
+    },
+    solution: {
+      es: "Una webapp completa que usando IA permite a un usuario consultar recetas con ingredientes que tenga en casa, ofreciéndole un paso a paso, información nutricional y permitiéndole guardar las recetas para verlas a posterior.",
+      en: "A complete webpp that using AI allows a user to consult recipes with ingredients you have at home, offering a step by step, nutritional information and allowing you to save the recipes to see them later.",
+    },
+    results: {
+      es: [
+        "Newsletter con más de 100 suscriptores",
+        "Lanzamiento en tiempo",
+        "Escalado sin recursos de 3eros",
+        "Aplicación de acceso libre",
+      ],
+      en: [
+        "Newsletter with more than 100 subscribers",
+        "Time launch",
+        "Scaling without resources",
+        "Free access application",
+      ],
+    },
     featured: false,
     year: 2024,
     status: "active",

@@ -8,7 +8,6 @@ import { ProjectsSection } from "./IndexView/ProjectsSection";
 import BlogSection from "./IndexView/BlogSection";
 import TestimonialSection from "./IndexView/TestimonialSection";
 import ContactSection from "./IndexView/ContactSection";
-
 import { HeroSection } from "./IndexView/HeroSection";
 
 const IndexView = () => {
