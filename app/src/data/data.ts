@@ -311,4 +311,51 @@ export const projects = [
     year: 2024,
     status: "active",
   },
+  {
+    slug: "mailprex",
+    title: {
+      en: "Mailprex WebApp",
+      es: "Mailprex WebApp",
+    },
+    shortDescription: {
+      en: "A SAAS for sending emails",
+      es: "Un SAAS para enviar correos",
+    },
+    description: {
+      en: "Mailprex is a web platform designed to simplify the process of sending forms from websites to emails. You can easily integrate a React Hook into your project, to which you pass the minimum data that allow the shipping and content of the form to reach your chosen email without major inconveniences.",
+      es: "Mailprex es una plataforma web diseñada para simplificar el proceso de envío de formularios desde sitios web a correos electrónicos. Puedes integrar fácilmente un React Hook a tu proyecto, al cual le pasas los datos mínimos que permiten el envío y el contenido del formulario llega a tu correo elegido sin mayores inconvenientes.",
+    },
+    icon: Heart,
+    color: "from-blue-600 to-blue-800",
+    tags: ["Next.js", "Express.js", "Node.js", "Tailwind", "TypeScript"],
+    image:
+      "https://res.cloudinary.com/draig/image/upload/v1718564493/mailprex/ecqm348liaxh626yzscs.png",
+    demoUrl: "https://mailprex.excelso.xyz",
+    githubUrl: "https://github.com/nitdraig/mailprex",
+    challenge: {
+      es: "Entre múltiples landing pages que administraba tenia siempre el inconveniente de crear desde 0 una sección de contacto, donde se enviasen emails de forma simple a través de un formulario de contacto.",
+      en: "Among multiple landing pages that he administered always had the inconvenience of creating from 0 a contact section, where emails were sent simply through a contact form.",
+    },
+    solution: {
+      es: "Se construyó una solución de SAAS, que esta deployada en vercel, posee un paquete de NPM, una pagina de documentación y una API propia.",
+      en: "A SAAS solution was built, which is deployed in Vercel, has an NPM package, a documentation page and its own API.",
+    },
+    results: {
+      es: [
+        "Envio simplificado de emails",
+        "Fácil implementación",
+        "Capa gratuita extendida",
+        "Seguridad web",
+      ],
+      en: [
+        "Simplified emails",
+        "Easy implementation",
+        "Extended free layer",
+        "Web security",
+      ],
+    },
+    featured: false,
+    year: 2024,
+    status: "active",
+  },
 ];

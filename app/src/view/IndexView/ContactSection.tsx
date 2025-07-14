@@ -5,24 +5,31 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { toast } from "react-toastify";
+
+import { useMailprex } from "usemailprex-react";
 
 const ContactSection = ({ language }: any) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    project: "",
-    message: "",
+  const webName = "Portfolio Freelance Landing New";
+  const emailDestiny = process.env.NEXT_PUBLIC_EMAIL_DESTINY || "";
+  const url = "https://api.mailprex.excelso.xyz/email/send";
+  const formToken = process.env.NEXT_PUBLIC_MAILPREX_FORM_TOKEN || "";
+  const { formData, handleChange, handleSubmit, response } = useMailprex({
+    url,
+    webName,
+    emailDestiny,
+    formToken,
   });
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
+    await handleSubmit(e);
+    if (response.error) {
+      toast.error("Error sending message. Try again later.");
+    } else {
+      toast.success("Message sent succesfully!");
+    }
   };
+
   return (
     <motion.section
       id="contact"
@@ -70,18 +77,20 @@ const ContactSection = ({ language }: any) => {
                     className="space-y-2"
                   >
                     <Label htmlFor="name" className="text-gray-900">
-                      {language === "es" ? "Nombre" : "FirstName"}
+                      {language === "es" ? "Nombre completo" : "FullName"}
                     </Label>
                     <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
+                      type="text"
+                      name="fullname"
+                      value={formData.fullname}
+                      required
+                      id="fullname"
+                      aria-labelledby="fullname"
+                      onChange={handleChange}
                       className="border-gray-300 focus:border-gray-900"
                       placeholder={
                         language === "es" ? "Tu Nombre" : "Your Name"
                       }
-                      required
                     />
                   </motion.div>
                   <motion.div
@@ -96,15 +105,16 @@ const ContactSection = ({ language }: any) => {
                     </Label>
                     <Input
                       id="email"
-                      name="email"
                       type="email"
                       value={formData.email}
-                      onChange={handleInputChange}
+                      required
+                      onChange={handleChange}
+                      name="email"
+                      aria-labelledby="email"
                       className="border-gray-300 focus:border-gray-900"
                       placeholder={
                         language === "es" ? "Tu correo" : "Your Email"
                       }
-                      required
                     />
                   </motion.div>
                 </div>
@@ -120,10 +130,11 @@ const ContactSection = ({ language }: any) => {
                     {language === "es" ? "Tipo de Proyecto" : "Project Type"}
                   </Label>
                   <Input
-                    id="project"
-                    name="project"
-                    value={formData.project}
-                    onChange={handleInputChange}
+                    type="text"
+                    id="service"
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
                     className="border-gray-300 focus:border-gray-900"
                     placeholder={
                       language === "es" ? "Tipo de Proyecto" : "Project Type"
@@ -143,15 +154,17 @@ const ContactSection = ({ language }: any) => {
                     {language === "es" ? "Mensaje" : "Message"}
                   </Label>
                   <Textarea
-                    id="message"
                     name="message"
+                    id="message"
+                    rows={5}
                     value={formData.message}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
+                    required
+                    aria-labelledby="message"
                     className="border-gray-300 focus:border-gray-900 min-h-[120px]"
                     placeholder={
                       language === "es" ? "Tu mensaje" : "Your message"
                     }
-                    required
                   />
                 </motion.div>
 
