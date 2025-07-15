@@ -176,6 +176,7 @@ const ContactSection = ({ language }: any) => {
                 >
                   <Button
                     type="submit"
+                    disabled={response && response.error}
                     size="lg"
                     className="w-full bg-gray-900 text-white hover:bg-gray-800 font-semibold"
                   >
