@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useMailprex } from "usemailprex-react";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const ContactSection = ({ language }: any) => {
+  const [loading, setLoading] = useState(false);
   const webName = "Portfolio Freelance Landing New";
   const emailDestiny = process.env.NEXT_PUBLIC_EMAIL_DESTINY || "";
   const url = "https://api.mailprex.excelso.xyz/email/send";
@@ -20,14 +22,17 @@ const ContactSection = ({ language }: any) => {
     formToken,
   });
   const handleFormSubmit = async (e: any) => {
+    setLoading(true);
     e.preventDefault();
     await handleSubmit(e);
     if (response.error) {
-      toast.error("Error sending message. Try again later.");
+      alert("Error sending message. Try again later.");
     } else {
-      toast.success("Message sent succesfully!");
+      alert("Message sent succesfully! We'll get back to you soon.");
     }
+    setLoading(false);
   };
+
   return (
     <motion.section
       id="contact"
@@ -176,7 +181,7 @@ const ContactSection = ({ language }: any) => {
                 >
                   <Button
                     type="submit"
-                    disabled={response && response.error}
+                    disabled={loading}
                     size="lg"
                     className="w-full bg-gray-900 text-white hover:bg-gray-800 font-semibold"
                   >
