@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useMailprex } from "usemailprex-react";
+import { toast } from "react-toastify";
 
 const ContactSection = ({ language }: any) => {
   const webName = "Portfolio Freelance Landing New";
@@ -18,7 +19,15 @@ const ContactSection = ({ language }: any) => {
     emailDestiny,
     formToken,
   });
-
+  const handleFormSubmit = async (e: any) => {
+    e.preventDefault();
+    await handleSubmit(e);
+    if (response.error) {
+      toast.error("Error sending message. Try again later.");
+    } else {
+      toast.success("Message sent succesfully!");
+    }
+  };
   return (
     <motion.section
       id="contact"
@@ -56,7 +65,7 @@ const ContactSection = ({ language }: any) => {
         >
           <Card className="border-gray-200 shadow-sm">
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
