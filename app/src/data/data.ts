@@ -7,54 +7,54 @@ import {
   Zap,
 } from "lucide-react";
 export const projects = [
-  {
-    slug: "sigii-app",
-    title: {
-      en: "Sigii App | Transforming the learning experience",
-      es: "Sigii App | Transformando la experiencia de aprendizaje",
-    },
-    shortDescription: {
-      en: "Comprehensive system for the management of smart institutions",
-      es: "Sistema Integral para la Gestion de Instituciones Inteligentes",
-    },
-    description: {
-      en: "Web platform developed for management of institutions, teachers, and students focused on public schools, private and university education. It is part of a larger ecosystem that seeks to facilitate the integration of talents into modernity.",
-      es: "Plataforma web desarrollada para gestión de instituciones, profesores, y alumnos enfocado en escuelas públicas, privadas de educación secundaria y universitaria. Forma parte de un ecosistema más grande que busca facilitar la integración de los talentos a la modernidad. ",
-    },
-    icon: Layers,
-    color: "from-blue-700 to-gray-600",
-    tags: ["Next.js", "Tailwind", "TypeScript", "Express", "MongoDB"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1751938412/excelso/sigii/imagen_2025-07-07_223330718_ikhfnm.png",
-    demoUrl: "https://sigii.tips",
-    challenge: {
-      es: "Construir en un mes una plataforma de gestión institucional completa que contenga herramientas interconectadas formando un ecosistema integral que permita abordar cada etapa del desarrollo humano.",
-      en: "Build in a month a complete institutional management platform containing interconnected tools forming an integral ecosystem that allows each stage of human development to be addressed.",
-    },
-    solution: {
-      es: "MVP completo funcionando en 4 semanas, con estructura modular que permite escalar a futuro a múltiples dependencias e integrar nuevas herramientas revolucionarias.",
-      en: "Complete MVP running in 4 weeks, with modular structure that allows you to climb to multiple units and integrate new revolutionary tools.",
-    },
-    results: {
-      es: [
-        "MVP funcional en 4 semanas",
-        "Chatbots funcionales",
-        "Integración de herramientas IA",
-        "Modularidad",
-        "Escalabilidad",
-      ],
-      en: [
-        "MVP functional in 4 weeks",
-        "Functional chatbots",
-        "INTEGRATION OF TOOLS IA",
-        "Modularity",
-        "Scalability",
-      ],
-    },
-    featured: false,
-    year: 2024,
-    status: "active",
-  },
+  // {
+  //   slug: "sigii-app",
+  //   title: {
+  //     en: "Sigii App | Transforming the learning experience",
+  //     es: "Sigii App | Transformando la experiencia de aprendizaje",
+  //   },
+  //   shortDescription: {
+  //     en: "Comprehensive system for the management of smart institutions",
+  //     es: "Sistema Integral para la Gestion de Instituciones Inteligentes",
+  //   },
+  //   description: {
+  //     en: "Web platform developed for management of institutions, teachers, and students focused on public schools, private and university education. It is part of a larger ecosystem that seeks to facilitate the integration of talents into modernity.",
+  //     es: "Plataforma web desarrollada para gestión de instituciones, profesores, y alumnos enfocado en escuelas públicas, privadas de educación secundaria y universitaria. Forma parte de un ecosistema más grande que busca facilitar la integración de los talentos a la modernidad. ",
+  //   },
+  //   icon: Layers,
+  //   color: "from-blue-700 to-gray-600",
+  //   tags: ["Next.js", "Tailwind", "TypeScript", "Express", "MongoDB"],
+  //   image:
+  //     "https://res.cloudinary.com/draig/image/upload/v1751938412/excelso/sigii/imagen_2025-07-07_223330718_ikhfnm.png",
+  //   demoUrl: "https://sigii.tips",
+  //   challenge: {
+  //     es: "Construir en un mes una plataforma de gestión institucional completa que contenga herramientas interconectadas formando un ecosistema integral que permita abordar cada etapa del desarrollo humano.",
+  //     en: "Build in a month a complete institutional management platform containing interconnected tools forming an integral ecosystem that allows each stage of human development to be addressed.",
+  //   },
+  //   solution: {
+  //     es: "MVP completo funcionando en 4 semanas, con estructura modular que permite escalar a futuro a múltiples dependencias e integrar nuevas herramientas revolucionarias.",
+  //     en: "Complete MVP running in 4 weeks, with modular structure that allows you to climb to multiple units and integrate new revolutionary tools.",
+  //   },
+  //   results: {
+  //     es: [
+  //       "MVP funcional en 4 semanas",
+  //       "Chatbots funcionales",
+  //       "Integración de herramientas IA",
+  //       "Modularidad",
+  //       "Escalabilidad",
+  //     ],
+  //     en: [
+  //       "MVP functional in 4 weeks",
+  //       "Functional chatbots",
+  //       "INTEGRATION OF TOOLS IA",
+  //       "Modularity",
+  //       "Scalability",
+  //     ],
+  //   },
+  //   featured: false,
+  //   year: 2024,
+  //   status: "active",
+  // },
   {
     slug: "mining-talent-net",
     title: {
