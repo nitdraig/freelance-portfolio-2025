@@ -29,7 +29,7 @@ export function HeroSection({ language }: any) {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -41,7 +41,7 @@ export function HeroSection({ language }: any) {
     },
   };
 
-  const floatingVariants = {
+  const floatingVariants: any = {
     animate: {
       y: [-10, 10, -10],
       transition: {

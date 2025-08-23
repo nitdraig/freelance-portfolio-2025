@@ -20,7 +20,6 @@ export default function ProjectDetail() {
   const params = useParams();
   const { language } = useLanguage();
 
-  // Buscar el proyecto por slug
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -28,12 +27,12 @@ export default function ProjectDetail() {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            {language === "en" ? "Project not found" : "Proyecto no encontrado"}
+            {language === "es" ? "Proyecto no encontrado" : "Project not found"}
           </h1>
           <Link href="/">
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              {language === "en" ? "Back to Home" : "Volver al Inicio"}
+              {language === "es" ? "Volver al Inicio" : "Back to Home"}
             </Button>
           </Link>
         </div>
