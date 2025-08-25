@@ -4,6 +4,11 @@ import {
   Layers,
   Target,
   TrendingUp,
+  Users,
+  Award,
+  Clock,
+  ExternalLink,
+  Github,
   Zap,
 } from "lucide-react";
 export const projects = [
@@ -55,6 +60,53 @@ export const projects = [
   //   year: 2024,
   //   status: "active",
   // },
+  {
+    slug: "around-notes-landing",
+    title: {
+      en: "Around Notes Landing Page",
+      es: "Around Notes Landing Page",
+    },
+    shortDescription: {
+      en: "A landing page for Around Notes App",
+      es: "Una Landing page para Around Notes App",
+    },
+    description: {
+      en: "A landing page for the app 'Around Notes', provides a platform for users to create and manage medical notes. The application features a modern design and utilizes various technologies to provide a seamless user experience.",
+      es: "Una Landing page para la aplicación 'Around Notes', a una plataforma para que usuarios médicos creen y administren notas médicas. La aplicación presenta un diseño moderno y utiliza varias tecnologías para proporcionar una experiencia de usuario perfecta.",
+    },
+    year: 2025,
+    icon: Award,
+    color: "from-purple-600 to-purple-800",
+    tags: ["Astro", "Tailwind", "SEO", "Performance"],
+    image:
+      "https://res.cloudinary.com/draig/image/upload/v1756146189/portolio-personal/around-notes_dziady.webp",
+    demoUrl: "https://aroundnotes.ai",
+
+    challenge: {
+      es: "Desarrollar una landing page atractiva y funcional para Around Notes, que comunique efectivamente las características y beneficios de la aplicación. Además, la página debe estar optimizada para SEO y rendimiento. El proyecto debe completarse en un plazo de 2 semanas.",
+      en: "Develop an attractive and functional landing page for Around Notes, which effectively communicates the characteristics and benefits of the application. In addition, the page must be optimized for SEO and performance. The project must be completed within 2 weeks.",
+    },
+    solution: {
+      es: "Una landing page funcional, escalable, optimizada para SEO y rendimiento, que presenta de manera clara y atractiva las características y beneficios de Around Notes. La página está diseñada para ser responsiva y accesible en todos los dispositivos.",
+      en: "A functional landing page, scalable, optimized for SEO and performance, which clearly and attractively presents the characteristics and benefits of Around Notes. The page is designed to be responsive and accessible on all devices.",
+    },
+    results: {
+      es: [
+        "Landing page funcional",
+        "SEO optimizado",
+        "Perfomance optimizado",
+        "Responsive",
+      ],
+      en: [
+        "Landing Page Functional",
+        "SEO optimized",
+        "Optimized perfomance",
+        "Responsive",
+      ],
+    },
+    featured: true,
+    status: "active",
+  },
   {
     slug: "mining-talent-net",
     title: {
