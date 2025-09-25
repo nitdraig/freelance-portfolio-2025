@@ -117,8 +117,8 @@ export function HeroSection({ language }: any) {
             >
               {language === "es" ? (
                 <>
-                  Transformo ideas en productos exitosos utilizando van
-                  Herramientas de IA y metodologías probadas de gestión de
+                  Transformo ideas en productos exitosos utilizando
+                  herramientas de IA avanzadas y metodologías probadas de gestión de
                   proyectos.
                 </>
               ) : (
@@ -132,7 +132,7 @@ export function HeroSection({ language }: any) {
           {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-3 gap-6 mb-4"
+            className="grid grid-cols-3 gap-4 sm:gap-6 mb-4"
           >
             {[
               {
@@ -152,9 +152,21 @@ export function HeroSection({ language }: any) {
                 label: (
                   <>
                     {language === "es" ? (
-                      <> Proyectos Entregados</>
+                      <>Proyectos Entregados</>
                     ) : (
                       <>Projects Delivered</>
+                    )}
+                  </>
+                ),
+              },
+              {
+                number: "100%",
+                label: (
+                  <>
+                    {language === "es" ? (
+                      <>Clientes Satisfechos</>
+                    ) : (
+                      <>Client Satisfaction</>
                     )}
                   </>
                 ),
@@ -181,11 +193,11 @@ export function HeroSection({ language }: any) {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1 + index * 0.2, duration: 0.5 }}
-                  className="text-2xl font-bold text-white mb-1"
+                  className="text-xl sm:text-2xl font-bold text-white mb-1"
                 >
                   {stat.number}
                 </motion.div>
-                <div className="text-sm text-white/70">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-white/70 text-center">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

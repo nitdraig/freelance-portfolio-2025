@@ -147,7 +147,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
                           variant="ghost"
                           className="text-gray-900 hover:bg-gray-100 p-0 h-auto font-semibold group-hover:text-gray-700 transition-colors"
                         >
-                          {language === "en" ? "Read More" : "Leer Mas"}
+                          {language === "en" ? "Read More" : "Leer Más"}
                           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </motion.div>

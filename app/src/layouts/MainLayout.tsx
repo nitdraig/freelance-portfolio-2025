@@ -8,7 +8,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <LanguageProvider>
-        <main className={`flex-1"} text-white`}>
+        <main className="flex-1 text-white">
           <Navbar />
           {children}
           <Footer />

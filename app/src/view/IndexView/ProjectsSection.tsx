@@ -83,9 +83,11 @@ export function ProjectsSection({ language }: any) {
                     >
                       <img
                         src={project.image}
-                        alt="Project Image"
+                        alt={`${project.title[language]} - Screenshot del proyecto`}
                         className="h-full w-full object-cover object-center"
                         loading="lazy"
+                        width="400"
+                        height="300"
                       />
                     </motion.div>
 

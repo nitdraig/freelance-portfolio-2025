@@ -93,13 +93,13 @@ const ServicesSection = ({ language }: any) => {
                   {" "}
                   {language === "es" ? (
                     <>
-                      Me encargo de todo el proceso desde el desarrollo el
+                      Me encargo de todo el proceso desde el desarrollo hasta el
                       mantenimiento y escalado.
                     </>
                   ) : (
                     <>
-                      I take care of the whole process from development and
-                      scaling.
+                      I take care of the whole process from development to
+                      maintenance and scaling.
                     </>
                   )}
                 </>

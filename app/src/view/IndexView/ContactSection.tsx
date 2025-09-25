@@ -26,9 +26,9 @@ const ContactSection = ({ language }: any) => {
     e.preventDefault();
     await handleSubmit(e);
     if (response.error) {
-      alert("Error sending message. Try again later.");
+      toast.error(language === "es" ? "Error al enviar el mensaje. Inténtalo más tarde." : "Error sending message. Try again later.");
     } else {
-      alert("Message sent succesfully! We'll get back to you soon.");
+      toast.success(language === "es" ? "¡Mensaje enviado exitosamente! Te contactaremos pronto." : "Message sent successfully! We'll get back to you soon.");
     }
     setLoading(false);
   };
@@ -80,7 +80,7 @@ const ContactSection = ({ language }: any) => {
                     className="space-y-2"
                   >
                     <Label htmlFor="name" className="text-gray-900">
-                      {language === "es" ? "Nombre completo" : "FullName"}
+                      {language === "es" ? "Nombre completo" : "Full Name"}
                     </Label>
                     <Input
                       type="text"
@@ -185,7 +185,7 @@ const ContactSection = ({ language }: any) => {
                     size="lg"
                     className="w-full bg-gray-900 text-white hover:bg-gray-800 font-semibold"
                   >
-                    {language === "es" ? "Enviar" : "Send"}
+{loading ? (language === "es" ? "Enviando..." : "Sending...") : (language === "es" ? "Enviar Mensaje" : "Send Message")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </motion.div>
