@@ -13,6 +13,56 @@ import {
 } from "lucide-react";
 export const projects = [
   {
+    slug: "around-notes-blog",
+    title: {
+      en: "Around Notes Blog",
+      es: "Around Notes Blog",
+    },
+    shortDescription: {
+      en: "Medical content platform and knowledge hub",
+      es: "Plataforma de contenido médico y centro de conocimiento",
+    },
+    description: {
+      en: "A comprehensive medical blog and knowledge platform for Around Notes, designed to educate healthcare professionals and share insights about AI in medicine. I developed the complete blog architecture, content management system, and user experience, focusing on accessibility, SEO optimization, and medical content presentation standards.",
+      es: "Un blog médico integral y plataforma de conocimiento para Around Notes, diseñado para educar a profesionales de la salud y compartir conocimientos sobre IA en medicina. Desarrollé la arquitectura completa del blog, sistema de gestión de contenido, y experiencia de usuario, enfocándome en accesibilidad, optimización SEO, y estándares de presentación de contenido médico.",
+    },
+    year: 2025,
+    icon: Award,
+    color: "from-blue-600 to-blue-800",
+    tags: ["Next.js", "MDX", "SEO", "Content Management", "Healthcare", "Blog"],
+    image: "./project-images/aroundnotes-blog-image.webp",
+    demoUrl: "https://blog.aroundnotes.ai",
+
+    challenge: {
+      es: "Crear una plataforma de blog médico que cumpla con estándares de accesibilidad web, optimización SEO, y presentación profesional de contenido médico. El desafío incluía desarrollar un sistema de gestión de contenido eficiente, implementar categorización médica especializada, y asegurar que el contenido sea fácilmente navegable tanto para profesionales médicos como para el público general interesado en IA médica.",
+      en: "Create a medical blog platform that meets web accessibility standards, SEO optimization, and professional medical content presentation. The challenge included developing an efficient content management system, implementing specialized medical categorization, and ensuring content is easily navigable for both medical professionals and the general public interested in medical AI.",
+    },
+    solution: {
+      es: "Desarrollé una plataforma de blog completa usando Next.js y MDX para gestión de contenido, implementando un sistema de categorías médicas, optimización SEO avanzada, y diseño responsive. Creé componentes especializados para contenido médico, integré herramientas de análisis de rendimiento, y establecí un flujo de trabajo de publicación eficiente para el equipo de contenido médico.",
+      en: "Developed a complete blog platform using Next.js and MDX for content management, implementing a medical categories system, advanced SEO optimization, and responsive design. Created specialized components for medical content, integrated performance analytics tools, and established an efficient publishing workflow for the medical content team.",
+    },
+    results: {
+      es: [
+        "Plataforma de blog médico completamente funcional",
+        "Sistema de gestión de contenido MDX",
+        "Optimización SEO para contenido médico",
+        "Categorización especializada de temas médicos",
+        "Diseño responsive y accesible",
+        "Integración con herramientas de análisis",
+      ],
+      en: [
+        "Fully functional medical blog platform",
+        "MDX content management system",
+        "SEO optimization for medical content",
+        "Specialized medical topic categorization",
+        "Responsive and accessible design",
+        "Analytics tools integration",
+      ],
+    },
+    featured: false,
+    status: "active",
+  },
+  {
     slug: "around-notes-app",
     title: {
       en: "Around Notes app",
@@ -30,8 +80,7 @@ export const projects = [
     icon: Award,
     color: "from-purple-800 to-purple-900",
     tags: ["React", "TypeScript", "UX/UI", "Performance", "Healthcare", "AI"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1758833734/portolio-personal/imagen_2025-09-25_175532322_kh8pth.png",
+    image: "./project-images/aroundnotes-app-image.webp",
     demoUrl: "https://app.aroundnotes.ai",
 
     challenge: {
@@ -81,8 +130,7 @@ export const projects = [
     icon: Award,
     color: "from-purple-300 to-purple-500",
     tags: ["Astro", "Tailwind", "SEO", "Performance"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1756146189/portolio-personal/around-notes_dziady.webp",
+    image: "./project-images/aroundnotes-landing-image.webp",
     demoUrl: "https://aroundnotes.ai",
 
     challenge: {
@@ -127,8 +175,7 @@ export const projects = [
     icon: Layers,
     color: "from-blue-700 to-gray-600",
     tags: ["Next.js", "Tailwind", "TypeScript", "Express", "MongoDB"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1751938412/excelso/sigii/imagen_2025-07-07_223330718_ikhfnm.png",
+    image: "./project-images/sigii-image.png",
     demoUrl: "https://sigii.tips",
     challenge: {
       es: "Construir en un mes una plataforma de gestión institucional completa que contenga herramientas interconectadas formando un ecosistema integral que permita abordar cada etapa del desarrollo humano.",
@@ -176,8 +223,7 @@ export const projects = [
     icon: Zap,
     color: "from-yellow-600 to-yellow-800",
     tags: ["Next.js", "Express.js", "TypeScript", "Cloudinary"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1748037652/excelso/mtn/wj0t0hauytbtocgno4bx.png",
+    image: "./project-images/mtn-image.png",
     demoUrl: "https://miningtalent.net",
     githubUrl: "https://github.com/excelso-tech",
     challenge: {
@@ -222,8 +268,7 @@ export const projects = [
     icon: TrendingUp,
     color: "from-sky-600 to-sky-800",
     tags: ["Next.js", "TypeScript", "Tailwind", "Node.js"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1751938633/excelso/imagen_2025-07-07_223712650_zyyjq9.png",
+    image: "./project-images/excelso-image.png",
     demoUrl: "https://excelso.xyz",
     githubUrl: "https://github.com/excelso-tech",
     featured: true,
@@ -247,8 +292,7 @@ export const projects = [
     icon: CheckCircle,
     color: "from-green-600 to-green-800",
     tags: ["Next.js", "TypeScript", "IA", "Cloudinary"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1743035227/portolio-personal/u7huy9ubnibs978b6pl3.png",
+    image: "./project-images/jema-image.png",
     demoUrl: "https://jema.excelso.xyz",
     challenge: {
       es: "Crear una plataforma de dos lados, una para usuarios simples otra para entidades y/o profesionales que busquen una herramienta para la gestión de informes de impacto ambiental.",
@@ -292,8 +336,7 @@ export const projects = [
     icon: Heart,
     color: "from-pink-600 to-pink-800",
     tags: ["Next.js", "Strapi", "Tailwind", "TypeScript"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1732390002/portolio-personal/vtk7r8pk8dt3sxozdz9s.png",
+    image: "./project-images/huellitas-image.png",
     demoUrl: "https://www.huellitasctgna.com",
     githubUrl: "https://github.com/inkua/Huellitas",
     challenge: {
@@ -339,8 +382,7 @@ export const projects = [
     icon: Target,
     color: "from-indigo-600 to-indigo-800",
     tags: ["Nextjs", "Tailwind", "Typescript"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1709857812/freelance/dc-consultora/jeyhi2cocajc7ouv4cnx.png",
+    image: "./project-images/dc-image.png",
     demoUrl: "https://dcconsultora.com.ar",
 
     challenge: {
@@ -385,8 +427,7 @@ export const projects = [
     icon: Layers,
     color: "from-gray-600 to-gray-800",
     tags: ["Next.js", "Tailwind", "TypeScript"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1702086792/fuddy/fpxgbfolktuj2le7u4sf.png",
+    image: "./project-images/fuddy-app-image.png",
     demoUrl: "https://fuddy.click",
     challenge: {
       es: "La creciente falta de información clara, económica y accesible sobre nutrición, alimentación y creación de recetas hacia necesaria la creación de una herramienta que usara tecnología moderna.",
@@ -431,8 +472,7 @@ export const projects = [
     icon: Heart,
     color: "from-blue-600 to-blue-800",
     tags: ["Next.js", "Express.js", "Node.js", "Tailwind", "TypeScript"],
-    image:
-      "https://res.cloudinary.com/draig/image/upload/v1718564493/mailprex/ecqm348liaxh626yzscs.png",
+    image: "./project-images/mailprex-app.png",
     demoUrl: "https://mailprex.excelso.xyz",
     githubUrl: "https://github.com/nitdraig/mailprex",
     challenge: {
