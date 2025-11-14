@@ -16,7 +16,7 @@ import { useState } from "react";
 import { projects } from "../../data/data";
 
 export function ProjectsSection({ language }: any) {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(3); // Mostrar 3 inicialmente
 
   const handleShowMore = () => {
@@ -66,7 +66,7 @@ export function ProjectsSection({ language }: any) {
               <motion.div
                 key={project.slug}
                 whileHover={{ y: -8 }}
-                onHoverStart={() => setHoveredProject(project.id)}
+                onHoverStart={() => setHoveredProject(project.slug)}
                 onHoverEnd={() => setHoveredProject(null)}
                 className="group cursor-pointer"
               >
@@ -76,8 +76,8 @@ export function ProjectsSection({ language }: any) {
                   >
                     <motion.div
                       animate={{
-                        scale: hoveredProject === project.id ? 1.1 : 1,
-                        rotate: hoveredProject === project.id ? 5 : 0,
+                        scale: hoveredProject === project.slug ? 1.1 : 1,
+                        rotate: hoveredProject === project.slug ? 5 : 0,
                       }}
                       transition={{ duration: 0.3 }}
                     >
@@ -94,7 +94,7 @@ export function ProjectsSection({ language }: any) {
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{
-                        opacity: hoveredProject === project.id ? 1 : 0,
+                        opacity: hoveredProject === project.slug ? 1 : 0,
                       }}
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0 bg-black/50 flex items-center justify-center gap-3"
@@ -102,7 +102,7 @@ export function ProjectsSection({ language }: any) {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{
-                          scale: hoveredProject === project.id ? 1 : 0,
+                          scale: hoveredProject === project.slug ? 1 : 0,
                         }}
                         transition={{ delay: 0.1, duration: 0.2 }}
                       >
@@ -119,7 +119,7 @@ export function ProjectsSection({ language }: any) {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{
-                          scale: hoveredProject === project.id ? 1 : 0,
+                          scale: hoveredProject === project.slug ? 1 : 0,
                         }}
                         transition={{ delay: 0.2, duration: 0.2 }}
                       >
@@ -153,7 +153,7 @@ export function ProjectsSection({ language }: any) {
                       {project.title[language]}
                     </CardTitle>
                     <CardDescription className="text-gray-600">
-                      {hoveredProject === project.id
+                      {hoveredProject === project.slug
                         ? project.description[language]
                         : project.shortDescription[language]}
                     </CardDescription>
@@ -175,8 +175,8 @@ export function ProjectsSection({ language }: any) {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{
-                        opacity: hoveredProject === project.id ? 1 : 0,
-                        y: hoveredProject === project.id ? 0 : 10,
+                        opacity: hoveredProject === project.slug ? 1 : 0,
+                        y: hoveredProject === project.slug ? 0 : 10,
                       }}
                       transition={{ duration: 0.3 }}
                       className="flex gap-2 md:opacity-0 md:group-hover:opacity-100 opacity-100"

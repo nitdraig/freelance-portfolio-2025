@@ -30,7 +30,7 @@ export const projects = [
     icon: Award,
     color: "from-blue-600 to-blue-800",
     tags: ["Next.js", "MDX", "SEO", "Content Management", "Healthcare", "Blog"],
-    image: "./project-images/aroundnotes-blog-image.webp",
+    image: "/project-images/aroundnotes-blog-image.webp",
     demoUrl: "https://blog.aroundnotes.ai",
 
     challenge: {
@@ -80,7 +80,7 @@ export const projects = [
     icon: Award,
     color: "from-purple-800 to-purple-900",
     tags: ["React", "TypeScript", "UX/UI", "Performance", "Healthcare", "AI"],
-    image: "./project-images/aroundnotes-app-image.webp",
+    image: "/project-images/aroundnotes-app-image.webp",
     demoUrl: "https://app.aroundnotes.ai",
 
     challenge: {
@@ -130,7 +130,7 @@ export const projects = [
     icon: Award,
     color: "from-purple-300 to-purple-500",
     tags: ["Astro", "Tailwind", "SEO", "Performance"],
-    image: "./project-images/aroundnotes-landing-image.webp",
+    image: "/project-images/aroundnotes-landing-image.webp",
     demoUrl: "https://aroundnotes.ai",
 
     challenge: {
@@ -175,7 +175,7 @@ export const projects = [
     icon: Layers,
     color: "from-blue-700 to-gray-600",
     tags: ["Next.js", "Tailwind", "TypeScript", "Express", "MongoDB"],
-    image: "./project-images/sigii-image.png",
+    image: "/project-images/sigii-image.png",
     demoUrl: "https://sigii.tips",
     challenge: {
       es: "Construir en un mes una plataforma de gestión institucional completa que contenga herramientas interconectadas formando un ecosistema integral que permita abordar cada etapa del desarrollo humano.",
@@ -223,7 +223,7 @@ export const projects = [
     icon: Zap,
     color: "from-yellow-600 to-yellow-800",
     tags: ["Next.js", "Express.js", "TypeScript", "Cloudinary"],
-    image: "./project-images/mtn-image.png",
+    image: "/project-images/mtn-image.png",
     demoUrl: "https://miningtalent.net",
     githubUrl: "https://github.com/excelso-tech",
     challenge: {
@@ -268,7 +268,7 @@ export const projects = [
     icon: TrendingUp,
     color: "from-sky-600 to-sky-800",
     tags: ["Next.js", "TypeScript", "Tailwind", "Node.js"],
-    image: "./project-images/excelso-image.png",
+    image: "/project-images/excelso-image.png",
     demoUrl: "https://excelso.xyz",
     githubUrl: "https://github.com/excelso-tech",
     featured: true,
@@ -292,7 +292,7 @@ export const projects = [
     icon: CheckCircle,
     color: "from-green-600 to-green-800",
     tags: ["Next.js", "TypeScript", "IA", "Cloudinary"],
-    image: "./project-images/jema-image.png",
+    image: "/project-images/jema-image.png",
     demoUrl: "https://jema.excelso.xyz",
     challenge: {
       es: "Crear una plataforma de dos lados, una para usuarios simples otra para entidades y/o profesionales que busquen una herramienta para la gestión de informes de impacto ambiental.",
@@ -336,7 +336,7 @@ export const projects = [
     icon: Heart,
     color: "from-pink-600 to-pink-800",
     tags: ["Next.js", "Strapi", "Tailwind", "TypeScript"],
-    image: "./project-images/huellitas-image.png",
+    image: "/project-images/huellitas-image.png",
     demoUrl: "https://www.huellitasctgna.com",
     githubUrl: "https://github.com/inkua/Huellitas",
     challenge: {
@@ -382,7 +382,7 @@ export const projects = [
     icon: Target,
     color: "from-indigo-600 to-indigo-800",
     tags: ["Nextjs", "Tailwind", "Typescript"],
-    image: "./project-images/dc-image.png",
+    image: "/project-images/dc-image.png",
     demoUrl: "https://dcconsultora.com.ar",
 
     challenge: {
@@ -427,7 +427,7 @@ export const projects = [
     icon: Layers,
     color: "from-gray-600 to-gray-800",
     tags: ["Next.js", "Tailwind", "TypeScript"],
-    image: "./project-images/fuddy-app-image.png",
+    image: "/project-images/fuddy-app-image.png",
     demoUrl: "https://fuddy.click",
     challenge: {
       es: "La creciente falta de información clara, económica y accesible sobre nutrición, alimentación y creación de recetas hacia necesaria la creación de una herramienta que usara tecnología moderna.",
@@ -472,7 +472,7 @@ export const projects = [
     icon: Heart,
     color: "from-blue-600 to-blue-800",
     tags: ["Next.js", "Express.js", "Node.js", "Tailwind", "TypeScript"],
-    image: "./project-images/mailprex-app.png",
+    image: "/project-images/mailprex-app.png",
     demoUrl: "https://mailprex.excelso.xyz",
     githubUrl: "https://github.com/nitdraig/mailprex",
     challenge: {

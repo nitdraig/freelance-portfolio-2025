@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       "Desarrollador Fullstack especializado en IA y gestión de proyectos. Transformo ideas en productos exitosos usando tecnologías modernas. Portfolio con +20 proyectos entregados.",
     creator: "Avellaneda Agustín",
     images:
-      "https://res.cloudinary.com/draig/image/upload/v1752024767/portolio-personal/imagen_2025-07-08_223240667_sq2fab.png",
+      "https://www.agustin.top/og-image.png",
   },
 
   robots: {
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: "Agustín Avellaneda Portfolio",
     images: [
       {
-        url: "https://res.cloudinary.com/draig/image/upload/v1752024767/portolio-personal/imagen_2025-07-08_223240667_sq2fab.png",
+        url: "https://www.agustin.top/og-image.png",
       },
     ],
   },
