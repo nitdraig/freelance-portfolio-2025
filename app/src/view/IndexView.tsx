@@ -6,6 +6,7 @@ import AboutSection from "./IndexView/AboutSection";
 import ServicesSection from "./IndexView/ServicesSection";
 import { ProjectsSection } from "./IndexView/ProjectsSection";
 import BlogSection from "./IndexView/BlogSection";
+import ResourcesSection from "./IndexView/ResourcesSection";
 import TestimonialSection from "./IndexView/TestimonialSection";
 import ContactSection from "./IndexView/ContactSection";
 import { HeroSection } from "./IndexView/HeroSection";
@@ -19,6 +20,7 @@ const IndexView = () => {
       <ServicesSection language={language} />
       <ProjectsSection language={language} />
       <BlogSection language={language} />
+      <ResourcesSection language={language} />
       <TestimonialSection language={language} />
       <ContactSection language={language} />
     </div>

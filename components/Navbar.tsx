@@ -20,7 +20,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <nav className="hidden md:flex gap-6 text-white">
+        <nav className="hidden md:flex gap-6 text-white items-center justify-center flex-1">
           <Link
             href="/#about"
             className="text-md font-medium hover:text-[#808080] transition-colors"
@@ -33,18 +33,23 @@ const Navbar = () => {
           >
             {language === "es" ? <>Casos de éxito</> : <>Success Cases</>}
           </Link>
-
-          <Link
-            href="/#contact"
-            className="text-md font-medium hover:text-[#808080]  transition-colors"
-          >
-            {language === "es" ? <> Contactarme</> : <>Contact</>}
-          </Link>
           <Link
             href="/#blogs"
             className="text-md font-medium hover:text-[#808080]  transition-colors"
           >
             Blogs
+          </Link>
+          <Link
+            href="/#resources"
+            className="text-md font-medium hover:text-[#808080]  transition-colors"
+          >
+            {language === "es" ? <>Recursos</> : <>Resources</>}
+          </Link>
+          <Link
+            href="/#contact"
+            className="text-md font-medium hover:text-[#808080]  transition-colors"
+          >
+            {language === "es" ? <> Contactarme</> : <>Contact</>}
           </Link>
         </nav>
 
