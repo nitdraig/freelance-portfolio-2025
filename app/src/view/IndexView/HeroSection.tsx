@@ -65,7 +65,7 @@ export function HeroSection({ language }: any) {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-black/90 z-10"></div>
         <Image
-          src="/agustin-hero.png?height=1080&width=1920"
+          src="/agustin-hero.webp?height=1080&width=1920"
           alt="Developer workspace background"
           fill
           className="object-cover object-center"
