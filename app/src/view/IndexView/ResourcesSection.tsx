@@ -102,11 +102,10 @@ export default function ResourcesSection({ language }: { language: "en" | "es" }
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className={`grid gap-8 ${
-                            resources.length === 1
-                                ? "grid-cols-1 justify-items-center max-w-md mx-auto"
-                                : "md:grid-cols-2 lg:grid-cols-3"
-                        }`}
+                        className={`grid gap-8 ${resources.length === 1
+                            ? "grid-cols-1 justify-items-center max-w-md mx-auto"
+                            : "md:grid-cols-2 lg:grid-cols-3"
+                            }`}
                     >
                         {resources.map((resource: Resource) => {
                             return (

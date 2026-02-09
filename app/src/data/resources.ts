@@ -60,46 +60,52 @@ export const resources: Resource[] = [
     coverImage: "/resources/context-engineering.webp",
     downloadUrl: "https://skipy.click/wj3l7p",
     isFree: true,
-    isNew: true,
-    isFeatured: false,
+    isNew: false,
+    isFeatured: true,
     year: 2025,
   },
   {
     id: "metodo-freelance",
     title: {
-      es: "Método Freelance: Exportar Soluciones Digitales, de Catamarca al Mundo", 
-      en: "Freelance Method: Exporting Digital Solutions, from Catamarca to the World" 
+      es: "Método Freelance: Exportar Soluciones Digitales, de Catamarca al Mundo",
+      en: "Freelance Method: Exporting Digital Solutions, from Catamarca to the World",
     },
     subtitle: {
-      es: "Un método probado para dejar de vender horas y empezar a vender soluciones de alto impacto al exterior.", 
-      en: "A proven method to stop selling hours and start selling high-impact solutions abroad." 
+      es: "Un método probado para dejar de vender horas y empezar a vender soluciones de alto impacto al exterior.",
+      en: "A proven method to stop selling hours and start selling high-impact solutions abroad.",
     },
     description: {
-      es: "Nace de errores reales y proyectos para diversas startups en las que colaboré. Este ebook te muestra cómo construir una forma de trabajar profesional para que tu trabajo viaje más lejos que vos.", 
-      en: "Born from real mistakes and projects for various startups I collaborated with. This ebook shows you how to build a professional way of working so your work travels further than you do." 
+      es: "Nace de errores reales y proyectos para diversas startups en las que colaboré. Este ebook te muestra cómo construir una forma de trabajar profesional para que tu trabajo viaje más lejos que vos.",
+      en: "Born from real mistakes and projects for various startups I collaborated with. This ebook shows you how to build a professional way of working so your work travels further than you do.",
     },
     highlights: {
       es: [
-        "Las cuatro bases del método: Tú, Cómo, Plus y Cliente", 
-        "Cómo traducir ideas vagas en alcances técnicos claros", 
-        "Guía práctica de cobros: Payoneer, Stripe y DolarApp", 
-        "Estrategias para conseguir proyectos sin depender de una sola plataforma", 
-        "Resiliencia profesional: sistema antes que motivación" 
+        "Las cuatro bases del método: Tú, Cómo, Plus y Cliente",
+        "Cómo traducir ideas vagas en alcances técnicos claros",
+        "Guía práctica de cobros: Payoneer, Stripe y DolarApp",
+        "Estrategias para conseguir proyectos sin depender de una sola plataforma",
+        "Resiliencia profesional: sistema antes que motivación",
       ],
       en: [
-        "The four pillars of the method: You, How, Plus, and Client", 
-        "How to translate vague ideas into clear technical scopes", 
-        "Practical payment guide: Payoneer, Stripe, and DolarApp", 
-        "Strategies to get projects without depending on a single platform", 
-        "Professional resilience: system before motivation" 
-      ]
+        "The four pillars of the method: You, How, Plus, and Client",
+        "How to translate vague ideas into clear technical scopes",
+        "Practical payment guide: Payoneer, Stripe, and DolarApp",
+        "Strategies to get projects without depending on a single platform",
+        "Professional resilience: system before motivation",
+      ],
     },
-    tags: ["Freelance", "Project Management", "Fullstack", "Catamarca", "Exportación de Servicios"], 
+    tags: [
+      "Freelance",
+      "Project Management",
+      "Fullstack",
+      "Catamarca",
+      "Exportación de Servicios",
+    ],
     coverImage: "/resources/freelance-method.webp",
     downloadUrl: "https://skipy.click/bjgmya",
     isFree: true,
     isNew: true,
     isFeatured: true,
-    year: 2026 
-  }
+    year: 2026,
+  },
 ];
