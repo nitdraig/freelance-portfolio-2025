@@ -55,7 +55,7 @@ export function HeroSection({ language }: any) {
     { icon: Github, url: "https://github.com/nitdraig" },
     {
       icon: Linkedin,
-      url: "https://www.linkedin.com/in/avellaneda-agustín-tns/",
+      url: "https://www.linkedin.com/in/avellaneda-agustin/",
     },
     { icon: Mail, url: "me@agustin.top" },
   ];
