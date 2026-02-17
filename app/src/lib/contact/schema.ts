@@ -37,14 +37,27 @@ export const DECISION_OPTIONS = [
   },
 ] as const;
 
+/** Nombre completo: al menos 5 caracteres y al menos un espacio (nombre + apellido) */
+const fullnameAntiSpam = z
+  .string()
+  .min(5, "Nombre y apellido (mín. 5 caracteres)")
+  .refine((s) => /\s/.test(s.trim()), "Indica nombre y apellido");
+
+/** Mensaje opcional pero si se escribe, mínimo 20 caracteres para filtrar spam tipo "vel", "aptus" */
+const messageAntiSpam = z
+  .string()
+  .max(2000)
+  .optional()
+  .refine((s) => !s || s.trim().length === 0 || s.trim().length >= 20, "Si escribes algo, al menos 20 caracteres");
+
 export const discoveryFormSchema = z.object({
-  fullname: z.string().min(2, "Nombre requerido"),
+  fullname: fullnameAntiSpam,
   email: z.string().email("Email inválido"),
   necesidad: z.enum(["desarrollo", "consultoria", "auditoria"]),
   presupuesto: z.enum(["menos-2k", "2k-5k", "5k-15k", "15k-plus"]),
   urgencia: z.enum(["asap", "2-semanas", "1-3-meses", "exploratorio"]),
   decision: z.enum(["si", "no"]),
-  message: z.string().max(2000).optional(),
+  message: messageAntiSpam,
 });
 
 export type DiscoveryFormData = z.infer<typeof discoveryFormSchema>;

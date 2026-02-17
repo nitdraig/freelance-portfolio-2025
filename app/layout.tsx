@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
+import { ReCaptchaProvider } from "@/app/src/components/ReCaptchaProvider";
 const raleway = Raleway({ subsets: ["latin"], weight: "400" });
 export const metadata: Metadata = {
   title: "Agustín Avellaneda | AI-Powered Fullstack Developer & Project Manager",
@@ -67,7 +68,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={raleway.className}>{children}</body>
+      <body className={raleway.className}>
+        <ReCaptchaProvider>{children}</ReCaptchaProvider>
+      </body>
     </html>
   );
 }

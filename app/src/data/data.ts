@@ -4,14 +4,69 @@ import {
   Layers,
   Target,
   TrendingUp,
-  Users,
   Award,
-  Clock,
-  ExternalLink,
-  Github,
   Zap,
+  MapPin,
 } from "lucide-react";
 export const projects = [
+  {
+    slug: "meet-my-race",
+    title: {
+      en: "MeetMyRace",
+      es: "MeetMyRace",
+    },
+    shortDescription: {
+      en: "Collaborative logistics platform for runners to share travel and accommodation expenses.",
+      es: "Plataforma de logística colaborativa para corredores para compartir gastos de viaje y alojamiento.",
+    },
+    description: {
+      en: "A strategic co-founded project designed to centralize race logistics. I led the technical architecture and development of the MVP, creating a platform where runners can find events, coordinate shared transportation, and manage lodging in a social, community-driven environment.",
+      es: "Un proyecto de co-fundación estratégica diseñado para centralizar la logística de carreras. Lideré la arquitectura técnica y el desarrollo del MVP, creando una plataforma donde los corredores pueden encontrar eventos, coordinar transporte compartido y gestionar alojamiento en un entorno social impulsado por la comunidad.",
+    },
+    year: 2026,
+    icon: MapPin,
+    color: "from-red-500 to-red-700",
+    tags: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Tailwind CSS",
+      "Logistics",
+      "Sports Tech",
+    ],
+    image: "/project-images/meetmyrace-main.webp",
+    demoUrl: "https://app.meetmyrace.com",
+
+    challenge: {
+      es: "Resolver la fragmentación de información logística para corredores y facilitar el contacto seguro para compartir gastos. El desafío consistió en construir un MVP funcional en 90 días que integrara un motor de búsqueda de carreras, un sistema de estados logísticos y mensajería en tiempo real.",
+      en: "Solve the fragmentation of logistical information for runners and facilitate safe contact to share expenses. The challenge consisted of building a functional MVP in 90 days that integrated a race search engine, a logistical status system, and real-time messaging.",
+    },
+    solution: {
+      es: "Implementé una arquitectura modular Fullstack (React/Node.js) con un sistema de carga comunitaria y validación administrativa. Diseñé un flujo de usuario donde la asistencia a carreras está condicionada a la definición de necesidades logísticas, conectando perfiles compatibles mediante un chat interno 1-a-1.",
+      en: "Implemented a modular Fullstack architecture (React/Node.js) with a community upload and administrative validation system. I designed a user flow where race attendance is conditioned on defining logistical needs, connecting compatible profiles through an internal 1-on-1 chat.",
+    },
+    results: {
+      es: [
+        "Producto Mínimo Viable (MVP) completamente funcional",
+        "Motor de búsqueda de carreras con filtros avanzados",
+        "Sistema de logística colaborativa (transporte y alojamiento)",
+        "Mensajería interna 1-a-1 para coordinación de usuarios",
+        "Panel de administración para curaduría de contenidos",
+        "Arquitectura escalable basada en TypeScript y Node.js",
+      ],
+      en: [
+        "Fully functional Minimum Viable Product (MVP)",
+        "Race search engine with advanced filters",
+        "Collaborative logistics system (transport and accommodation)",
+        "Internal 1-on-1 messaging for user coordination",
+        "Administrative panel for content curation",
+        "Scalable architecture based on TypeScript and Node.js",
+      ],
+    },
+    featured: true,
+    status: "active",
+  },
   {
     slug: "around-notes-blog",
     title: {

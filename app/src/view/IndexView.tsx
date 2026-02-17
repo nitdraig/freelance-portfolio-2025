@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { useLanguage } from "../contexts/LanguageContext";
 
 import AboutSection from "./IndexView/AboutSection";
@@ -8,8 +9,12 @@ import { ProjectsSection } from "./IndexView/ProjectsSection";
 import BlogSection from "./IndexView/BlogSection";
 import ResourcesSection from "./IndexView/ResourcesSection";
 import TestimonialSection from "./IndexView/TestimonialSection";
-import ContactSection from "./IndexView/ContactSection";
 import { HeroSection } from "./IndexView/HeroSection";
+
+const ContactSection = dynamic(
+  () => import("./IndexView/ContactSection"),
+  { ssr: false }
+);
 
 const IndexView = () => {
   const { language } = useLanguage();
@@ -22,7 +27,9 @@ const IndexView = () => {
       <BlogSection language={language} />
       <ResourcesSection language={language} />
       <TestimonialSection language={language} />
-      <ContactSection language={language} />
+      <Suspense fallback={<section id="contact" className="py-20 px-4 bg-gray-50 min-h-[400px]" />}>
+        <ContactSection language={language} />
+      </Suspense>
     </div>
   );
 };

@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -27,18 +27,24 @@ import {
 import {
   discoveryFormSchema,
   type DiscoveryFormData,
-  formatDiscoveryBodyForOwner,
   NECESIDAD_OPTIONS,
   PRESUPUESTO_OPTIONS,
   URGENCIA_OPTIONS,
   DECISION_OPTIONS,
 } from "@/app/src/lib/contact/schema";
-import { sendToMailprex } from "@/app/src/lib/contact/sendToMailprex";
-import { sendThankYouEmail } from "@/app/actions/sendThankYouEmail";
+import { submitDiscoveryForm } from "@/app/actions/submitDiscoveryForm";
+import { useReCaptcha } from "react-google-recaptcha-v3";
 
 const ContactSection = ({ language }: { language: "es" | "en" }) => {
   const [loading, setLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const formOpenTimestampRef = useRef<number>(0);
+  const executeRecaptcha = useReCaptcha()?.executeRecaptcha;
+
+  useEffect(() => {
+    formOpenTimestampRef.current = Date.now();
+  }, []);
+
   const [formState, setFormState] = useState<DiscoveryFormData>({
     fullname: "",
     email: "",
@@ -48,6 +54,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
     decision: "si",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,71 +65,62 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
       toast.error(msg);
       return;
     }
-    const data = parsed.data;
     setLoading(true);
 
-    const webName = "Portfolio Freelance Discovery";
-    const emailDestiny = process.env.NEXT_PUBLIC_EMAIL_DESTINY?.trim() || "";
-    const formToken = process.env.NEXT_PUBLIC_MAILPREX_FORM_TOKEN?.trim() || "";
-
-    if (!emailDestiny || !formToken) {
-      toast.error(
-        language === "es"
-          ? "Falta configurar NEXT_PUBLIC_EMAIL_DESTINY y NEXT_PUBLIC_MAILPREX_FORM_TOKEN en .env"
-          : "Missing NEXT_PUBLIC_EMAIL_DESTINY and NEXT_PUBLIC_MAILPREX_FORM_TOKEN in .env"
-      );
-      setLoading(false);
-      return;
+    let recaptchaToken: string | undefined;
+    if (executeRecaptcha) {
+      try {
+        recaptchaToken = await executeRecaptcha("submit");
+      } catch {
+        recaptchaToken = undefined;
+      }
     }
 
-    const bodyForOwner = formatDiscoveryBodyForOwner(data, language);
-
-    const [mailprexResult, thankYouResult] = await Promise.all([
-      sendToMailprex({
-        fullname: data.fullname,
-        email: data.email,
-        service: data.necesidad,
-        message: bodyForOwner,
-        webName,
-        emailDestiny,
-        formToken,
-      }),
-      sendThankYouEmail({
-        to: data.email,
-        name: data.fullname,
-        language,
-      }),
-    ]);
-
-    if (!mailprexResult.ok) {
-      const errMsg = typeof mailprexResult.error === "string" ? mailprexResult.error : "";
-      toast.error(
-        language === "es"
-          ? `Error al enviar. ${errMsg || "Inténtalo más tarde."}`
-          : `Error sending. ${errMsg || "Try again later."}`
-      );
-      setLoading(false);
-      return;
-    }
-
-    if (!thankYouResult.ok) {
-      toast.warning(
-        language === "es"
-          ? "Recibí tu solicitud, pero no pude enviarte el email de confirmación."
-          : "Request received, but the confirmation email could not be sent."
-      );
-    }
-    setShowSuccessModal(true);
-
-    setFormState({
-      fullname: "",
-      email: "",
-      necesidad: "desarrollo",
-      presupuesto: "2k-5k",
-      urgencia: "2-semanas",
-      decision: "si",
-      message: "",
+    const result = await submitDiscoveryForm({
+      ...parsed.data,
+      message: formState.message ?? undefined,
+      language,
+      honeypot: honeypot || undefined,
+      formOpenTimestamp: formOpenTimestampRef.current,
+      recaptchaToken,
     });
+
+    if (result.success) {
+      setShowSuccessModal(true);
+      setFormState({
+        fullname: "",
+        email: "",
+        necesidad: "desarrollo",
+        presupuesto: "2k-5k",
+        urgencia: "2-semanas",
+        decision: "si",
+        message: "",
+      });
+      setHoneypot("");
+    } else {
+      const isEs = language === "es";
+      switch (result.error) {
+        case "spam":
+          toast.error(isEs ? "No se pudo enviar." : "Could not send.");
+          break;
+        case "too_fast":
+          toast.error(isEs ? "Espera unos segundos y vuelve a intentar." : "Wait a few seconds and try again.");
+          break;
+        case "rate_limit":
+          toast.error(isEs ? "Demasiados envíos. Prueba dentro de una hora." : "Too many submissions. Try again in an hour.");
+          break;
+        case "recaptcha":
+          toast.error(isEs ? "No se pudo verificar que no eres un robot. Recarga la página e intenta de nuevo." : "Could not verify you're human. Reload the page and try again.");
+          break;
+        case "validation":
+          toast.error(result.message || (isEs ? "Revisa los campos." : "Check the fields."));
+          break;
+        case "mailprex":
+        case "email":
+          toast.error(result.message || (isEs ? "Error al enviar. Inténtalo más tarde." : "Error sending. Try again later."));
+          break;
+      }
+    }
     setLoading(false);
   };
 
@@ -164,6 +162,20 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
           <Card className="border-gray-200 shadow-sm">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot: oculto para usuarios; los bots lo rellenan y rechazamos el envío */}
+                <div aria-hidden="true" className="absolute -left-[9999px] top-0 opacity-0 pointer-events-none">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -173,7 +185,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                     className="space-y-2"
                   >
                     <Label htmlFor="fullname" className="text-gray-900">
-                      {isEs ? "Nombre completo" : "Full Name"}
+                      {isEs ? "Nombre y apellido" : "Full name"}
                     </Label>
                     <Input
                       type="text"
@@ -184,7 +196,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                         setFormState((s) => ({ ...s, fullname: e.target.value }))
                       }
                       className="border-gray-300 focus:border-gray-900"
-                      placeholder={isEs ? "Tu Nombre" : "Your Name"}
+                      placeholder={isEs ? "Ej: Juan Pérez" : "e.g. John Smith"}
                     />
                   </motion.div>
                   <motion.div
@@ -349,7 +361,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                   className="space-y-2"
                 >
                   <Label htmlFor="message" className="text-gray-900">
-                    {isEs ? "Mensaje adicional (opcional)" : "Additional message (optional)"}
+                    {isEs ? "Mensaje adicional (opcional, mín. 20 caracteres)" : "Additional message (optional, min. 20 characters)"}
                   </Label>
                   <Textarea
                     id="message"
