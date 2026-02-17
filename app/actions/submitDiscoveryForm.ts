@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { discoveryFormSchema, formatDiscoveryBodyForOwner } from "@/app/src/lib/contact/schema";
 import { sendThankYouEmail } from "./sendThankYouEmail";
 
-const MIN_FORM_OPEN_SECONDS = 10;
+const MIN_FORM_OPEN_SECONDS = 3;
 const RATE_LIMIT_MAX_SUBMISSIONS = 3;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hora
 
@@ -33,7 +33,7 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-const RECAPTCHA_MIN_SCORE = 0.4;
+const RECAPTCHA_MIN_SCORE = 0.3;
 
 async function verifyRecaptcha(token: string, remoteip?: string): Promise<{ success: boolean; score?: number }> {
   const secret = process.env.RECAPTCHA_SECRET_KEY?.trim();

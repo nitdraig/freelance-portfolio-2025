@@ -33,13 +33,13 @@ import {
   DECISION_OPTIONS,
 } from "@/app/src/lib/contact/schema";
 import { submitDiscoveryForm } from "@/app/actions/submitDiscoveryForm";
-import { useReCaptcha } from "react-google-recaptcha-v3";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const ContactSection = ({ language }: { language: "es" | "en" }) => {
   const [loading, setLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const formOpenTimestampRef = useRef<number>(0);
-  const executeRecaptcha = useReCaptcha()?.executeRecaptcha;
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
     formOpenTimestampRef.current = Date.now();
@@ -68,60 +68,68 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
     setLoading(true);
 
     let recaptchaToken: string | undefined;
-    if (executeRecaptcha) {
+    if (typeof executeRecaptcha === "function") {
       try {
-        recaptchaToken = await executeRecaptcha("submit");
+        recaptchaToken = await Promise.race([
+          executeRecaptcha("submit"),
+          new Promise<string | undefined>((_, reject) =>
+            setTimeout(() => reject(new Error("timeout")), 8000)
+          ),
+        ]);
       } catch {
         recaptchaToken = undefined;
       }
     }
 
-    const result = await submitDiscoveryForm({
-      ...parsed.data,
-      message: formState.message ?? undefined,
-      language,
-      honeypot: honeypot || undefined,
-      formOpenTimestamp: formOpenTimestampRef.current,
-      recaptchaToken,
-    });
-
-    if (result.success) {
-      setShowSuccessModal(true);
-      setFormState({
-        fullname: "",
-        email: "",
-        necesidad: "desarrollo",
-        presupuesto: "2k-5k",
-        urgencia: "2-semanas",
-        decision: "si",
-        message: "",
+    try {
+      const result = await submitDiscoveryForm({
+        ...parsed.data,
+        message: formState.message ?? undefined,
+        language,
+        honeypot: honeypot || undefined,
+        formOpenTimestamp: formOpenTimestampRef.current,
+        recaptchaToken,
       });
-      setHoneypot("");
-    } else {
-      const isEs = language === "es";
-      switch (result.error) {
-        case "spam":
-          toast.error(isEs ? "No se pudo enviar." : "Could not send.");
-          break;
-        case "too_fast":
-          toast.error(isEs ? "Espera unos segundos y vuelve a intentar." : "Wait a few seconds and try again.");
-          break;
-        case "rate_limit":
-          toast.error(isEs ? "Demasiados envíos. Prueba dentro de una hora." : "Too many submissions. Try again in an hour.");
-          break;
-        case "recaptcha":
-          toast.error(isEs ? "No se pudo verificar que no eres un robot. Recarga la página e intenta de nuevo." : "Could not verify you're human. Reload the page and try again.");
-          break;
-        case "validation":
-          toast.error(result.message || (isEs ? "Revisa los campos." : "Check the fields."));
-          break;
-        case "mailprex":
-        case "email":
-          toast.error(result.message || (isEs ? "Error al enviar. Inténtalo más tarde." : "Error sending. Try again later."));
-          break;
+
+      if (result.success) {
+        setShowSuccessModal(true);
+        setFormState({
+          fullname: "",
+          email: "",
+          necesidad: "desarrollo",
+          presupuesto: "2k-5k",
+          urgencia: "2-semanas",
+          decision: "si",
+          message: "",
+        });
+        setHoneypot("");
+      } else {
+        const isEs = language === "es";
+        switch (result.error) {
+          case "spam":
+            toast.error(isEs ? "No se pudo enviar." : "Could not send.");
+            break;
+          case "too_fast":
+            toast.error(isEs ? "Espera unos segundos después de abrir el formulario e intenta de nuevo." : "Wait a few seconds after the form loads, then try again.");
+            break;
+          case "rate_limit":
+            toast.error(isEs ? "Demasiados envíos. Prueba dentro de una hora." : "Too many submissions. Try again in an hour.");
+            break;
+          case "recaptcha":
+            toast.error(isEs ? "No se pudo verificar que no eres un robot. Recarga la página e intenta de nuevo." : "Could not verify you're human. Reload the page and try again.");
+            break;
+          case "validation":
+            toast.error(result.message || (isEs ? "Revisa los campos." : "Check the fields."));
+            break;
+          case "mailprex":
+          case "email":
+            toast.error(result.message || (isEs ? "Error al enviar. Inténtalo más tarde." : "Error sending. Try again later."));
+            break;
+        }
       }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const isEs = language === "es";

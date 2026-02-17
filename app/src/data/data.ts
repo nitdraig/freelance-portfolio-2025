@@ -9,7 +9,7 @@ import {
   MapPin,
 } from "lucide-react";
 export const projects = [
-  {
+  /* {
     slug: "meet-my-race",
     title: {
       en: "MeetMyRace",
@@ -66,7 +66,7 @@ export const projects = [
     },
     featured: true,
     status: "active",
-  },
+  },*/
   {
     slug: "around-notes-blog",
     title: {

@@ -3,6 +3,8 @@ import React from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,6 +16,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           <Footer />
         </main>
       </LanguageProvider>
+      <ToastContainer position="top-center" autoClose={5000} theme="light" />
     </>
   );
 };
