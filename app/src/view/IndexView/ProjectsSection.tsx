@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Eye } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { projects } from "../../data/data";
 
@@ -37,7 +38,7 @@ export function ProjectsSection({ language }: any) {
   return (
     <section id="projects" className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -52,9 +53,9 @@ export function ProjectsSection({ language }: any) {
               ? "Algunos ejemplos de MVPs y productos que he desarrollado y lanzado."
               : "Some examples of MVPs and products I have developed and launched."}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -63,7 +64,7 @@ export function ProjectsSection({ language }: any) {
         >
           {projects.slice(0, visibleCount).map((project: any) => {
             return (
-              <motion.div
+              <m.div
                 key={project.slug}
                 whileHover={{ y: -8 }}
                 onHoverStart={() => setHoveredProject(project.slug)}
@@ -74,24 +75,24 @@ export function ProjectsSection({ language }: any) {
                   <div
                     className={`relative h-48 bg-gradient-to-br ${project.color} flex items-center justify-center overflow-hidden`}
                   >
-                    <motion.div
+                    <m.div
                       animate={{
                         scale: hoveredProject === project.slug ? 1.1 : 1,
                         rotate: hoveredProject === project.slug ? 5 : 0,
                       }}
                       transition={{ duration: 0.3 }}
+                      className="relative h-full w-full"
                     >
-                      <img
+                      <Image
                         src={project.image}
                         alt={`${project.title[language]} - Screenshot del proyecto`}
-                        className="h-full w-full object-cover object-center"
-                        loading="lazy"
-                        width="400"
-                        height="300"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover object-center"
                       />
-                    </motion.div>
+                    </m.div>
 
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{
                         opacity: hoveredProject === project.slug ? 1 : 0,
@@ -99,10 +100,10 @@ export function ProjectsSection({ language }: any) {
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0 bg-black/50 flex items-center justify-center gap-3"
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
+                      <m.div
+                        initial={{ scale: 0.95 }}
                         animate={{
-                          scale: hoveredProject === project.slug ? 1 : 0,
+                          scale: hoveredProject === project.slug ? 1 : 0.95,
                         }}
                         transition={{ delay: 0.1, duration: 0.2 }}
                       >
@@ -115,11 +116,11 @@ export function ProjectsSection({ language }: any) {
                             <ExternalLink className="h-4 w-4" />
                           </a>
                         </Button>
-                      </motion.div>
-                      <motion.div
-                        initial={{ scale: 0 }}
+                      </m.div>
+                      <m.div
+                        initial={{ scale: 0.95 }}
                         animate={{
-                          scale: hoveredProject === project.slug ? 1 : 0,
+                          scale: hoveredProject === project.slug ? 1 : 0.95,
                         }}
                         transition={{ delay: 0.2, duration: 0.2 }}
                       >
@@ -128,12 +129,12 @@ export function ProjectsSection({ language }: any) {
                             <Eye className="h-4 w-4" />
                           </Link>
                         </Button>
-                      </motion.div>
-                    </motion.div>
+                      </m.div>
+                    </m.div>
 
                     {/* {project.featured && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
+                      <m.div
+                        initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.5, duration: 0.3 }}
                         className="absolute top-3 right-3"
@@ -144,7 +145,7 @@ export function ProjectsSection({ language }: any) {
                         >
                           Featured
                         </Badge>
-                      </motion.div>
+                      </m.div>
                     )} */}
                   </div>
 
@@ -172,7 +173,7 @@ export function ProjectsSection({ language }: any) {
                       ))}
                     </div>
 
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{
                         opacity: hoveredProject === project.slug ? 1 : 0,
@@ -206,24 +207,24 @@ export function ProjectsSection({ language }: any) {
                           {language === "en" ? "View" : "Ver"}
                         </Link>
                       </Button>
-                    </motion.div>
+                    </m.div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </m.div>
             );
           })}
-        </motion.div>
+        </m.div>
 
         {/* Show More Button */}
         {visibleCount < projects.length && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.6 }}
             className="text-center mt-12"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="outline"
                 size="lg"
@@ -232,8 +233,8 @@ export function ProjectsSection({ language }: any) {
               >
                 {language === "en" ? "See More" : "Ver Más"}
               </Button>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </div>
     </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +28,7 @@ const ProjectHero = ({
 }: any) => {
   return (
     <section className={`py-24 px-4 bg-gradient-to-r ${project.color}`}>
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -36,7 +36,7 @@ const ProjectHero = ({
       >
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white">
-            <motion.div variants={itemVariants}>
+            <m.div variants={itemVariants}>
               <Badge
                 variant="secondary"
                 className="mb-4 bg-white/20 text-white backdrop-blur-sm"
@@ -52,9 +52,9 @@ const ProjectHero = ({
               <p className="text-lg opacity-90 leading-relaxed mb-8">
                 {project.description[language]}
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div className="flex flex-wrap gap-6 mb-8">
+            <m.div className="flex flex-wrap gap-6 mb-8">
               {project.year && (
                 <div className="text-center">
                   <Clock className="h-6 w-6 text-white/80 mx-auto mb-2" />
@@ -83,10 +83,10 @@ const ProjectHero = ({
                   {language === "en" ? "Status" : "Estado"}
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div variants={itemVariants} className="flex gap-4">
-              <motion.div
+            <m.div variants={itemVariants} className="flex gap-4">
+              <m.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -100,8 +100,8 @@ const ProjectHero = ({
                     {language === "en" ? "View Live Demo" : "Ver Demo"}
                   </a>
                 </Button>
-              </motion.div>
-              <motion.div
+              </m.div>
+              <m.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -133,11 +133,11 @@ const ProjectHero = ({
                       : "Código Fuente No Disponible"}
                   </Button>
                 )}
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           </div>
 
-          <motion.div variants={itemVariants} className="relative">
+          <m.div variants={itemVariants} className="relative">
             <div className="relative rounded-lg overflow-hidden">
               <Image
                 src={project.image}
@@ -148,9 +148,9 @@ const ProjectHero = ({
               />
               {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div> */}
             </div>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

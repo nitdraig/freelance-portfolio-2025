@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -13,7 +13,7 @@ const AboutSection = ({ language }: any) => {
   const skillsEs = ["Liderazgo", "Escalado", "Estrategia", "Ventas"];
   const skillsEn = ["Leadership", "Scaling", "Strategy", "Sales"];
   return (
-    <motion.section
+    <m.section
       id="about"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -22,7 +22,7 @@ const AboutSection = ({ language }: any) => {
       className="py-20 px-4 bg-white"
     >
       <div className="max-w-6xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -37,10 +37,10 @@ const AboutSection = ({ language }: any) => {
               ? "I transform ideas into functional products using AI and manage the entire launch process."
               : "Transformo ideas en productos funcionales usando IA y gestiono todo el proceso de lanzamiento."}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -50,13 +50,13 @@ const AboutSection = ({ language }: any) => {
             <Card className="border-gray-400 shadow-sm hover:shadow-md transition-shadow h-full">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-4">
-                  <motion.div
+                  <m.div
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                     className="p-2 bg-gray-100 rounded-lg"
                   >
                     <Code className="h-6 w-6 text-gray-700" />
-                  </motion.div>
+                  </m.div>
                   <CardTitle className="text-2xl text-gray-900">
                     {language === "es"
                       ? "Desarrollo Fullstack"
@@ -73,9 +73,9 @@ const AboutSection = ({ language }: any) => {
                 <div className="flex flex-wrap gap-2">
                   {["React", "Next.js", "Node.js", "AI Tools"].map(
                     (tech, index) => (
-                      <motion.div
+                      <m.div
                         key={tech}
-                        initial={{ opacity: 0, scale: 0 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1, duration: 0.3 }}
@@ -87,15 +87,15 @@ const AboutSection = ({ language }: any) => {
                         >
                           {tech}
                         </Badge>
-                      </motion.div>
+                      </m.div>
                     )
                   )}
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -105,13 +105,13 @@ const AboutSection = ({ language }: any) => {
             <Card className="border-gray-400 shadow-sm hover:shadow-md transition-shadow h-full">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-4">
-                  <motion.div
+                  <m.div
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                     className="p-2 bg-gray-100 rounded-lg"
                   >
                     <Users className="h-6 w-6 text-gray-700" />
-                  </motion.div>
+                  </m.div>
                   <CardTitle className="text-2xl text-gray-900">
                     {language === "es"
                       ? "Gestión de Proyectos"
@@ -129,9 +129,9 @@ const AboutSection = ({ language }: any) => {
                 <div className="flex flex-wrap gap-2">
                   {(language === "es" ? skillsEs : skillsEn).map(
                     (skill, index) => (
-                      <motion.div
+                      <m.div
                         key={skill}
-                        initial={{ opacity: 0, scale: 0 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1, duration: 0.3 }}
@@ -143,16 +143,16 @@ const AboutSection = ({ language }: any) => {
                         >
                           {skill}
                         </Badge>
-                      </motion.div>
+                      </m.div>
                     )
                   )}
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </m.div>
         </div>
       </div>
-    </motion.section>
+    </m.section>
   );
 };
 

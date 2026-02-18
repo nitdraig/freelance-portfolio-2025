@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useLanguage } from "@/app/src/contexts/LanguageContext";
 
 const RelatedProjects = ({ language }: any) => {
   return (
     <section className="py-20 px-4 bg-gray-50">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -19,7 +19,7 @@ const RelatedProjects = ({ language }: any) => {
         </h3>
 
         <div className="text-center">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button size="lg" asChild>
               <Link href="/#projects">
                 {language === "en"
@@ -27,9 +27,9 @@ const RelatedProjects = ({ language }: any) => {
                   : "Ver Todos los Proyectos"}
               </Link>
             </Button>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

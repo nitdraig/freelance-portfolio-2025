@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Eye, Pencil, Plus, RefreshCw } from "lucide-react";
-import { create } from "domain";
 import { useRouter } from "next/navigation";
 
 interface BlogPost {
@@ -25,11 +24,26 @@ interface BlogPost {
   createdAt: string;
 }
 
+type DashboardState = { loading: boolean; posts: BlogPost[] };
+type DashboardAction = { type: "FETCH_START" } | { type: "FETCH_SUCCESS"; payload: BlogPost[] };
+
+function dashboardReducer(state: DashboardState, action: DashboardAction): DashboardState {
+  switch (action.type) {
+    case "FETCH_START":
+      return { ...state, loading: true };
+    case "FETCH_SUCCESS":
+      return { loading: false, posts: action.payload };
+    default:
+      return state;
+  }
+}
+
+const initialState: DashboardState = { loading: true, posts: [] };
+
 export default function DashboardPage() {
   const router = useRouter();
   const [language, setLanguage] = useState<"en" | "es">("en");
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [state, dispatch] = useReducer(dashboardReducer, initialState);
 
   const t = {
     en: {
@@ -63,34 +77,34 @@ export default function DashboardPage() {
   }[language];
 
   useEffect(() => {
-    // Simular carga de posts
     const fetchPosts = async () => {
-      setLoading(true);
+      dispatch({ type: "FETCH_START" });
       // Aquí deberías hacer fetch desde tu backend o CMS
-      await new Promise((res) => setTimeout(res, 800)); // Simula demora
-      setPosts([
-        {
-          id: "1",
-          title: "Understanding AI Models",
-          excerpt: "A brief overview of modern AI models...",
-          category: "AI Development",
-          status: "published",
-          readTime: "5 min",
-          createdAt: "2025-07-01",
-        },
-        {
-          id: "2",
-          title: "Project Management with AI",
-          excerpt: "How to organize AI-based teams efficiently...",
-          category: "Project Management",
-          status: "draft",
-          readTime: "4 min",
-          createdAt: "2025-06-15",
-        },
-      ]);
-      setLoading(false);
+      await new Promise((res) => setTimeout(res, 800));
+      dispatch({
+        type: "FETCH_SUCCESS",
+        payload: [
+          {
+            id: "1",
+            title: "Understanding AI Models",
+            excerpt: "A brief overview of modern AI models...",
+            category: "AI Development",
+            status: "published",
+            readTime: "5 min",
+            createdAt: "2025-07-01",
+          },
+          {
+            id: "2",
+            title: "Project Management with AI",
+            excerpt: "How to organize AI-based teams efficiently...",
+            category: "Project Management",
+            status: "draft",
+            readTime: "4 min",
+            createdAt: "2025-06-15",
+          },
+        ],
+      });
     };
-
     fetchPosts();
   }, []);
 
@@ -142,13 +156,13 @@ export default function DashboardPage() {
         </div>
 
         {/* Posts List */}
-        {loading ? (
+        {state.loading ? (
           <p className="text-gray-500">Loading...</p>
-        ) : posts.length === 0 ? (
+        ) : state.posts.length === 0 ? (
           <p className="text-gray-500">{t.empty}</p>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => (
+            {state.posts.map((post) => (
               <Card key={post.id} className="flex flex-col justify-between">
                 <CardHeader>
                   <CardTitle className="line-clamp-2 text-lg">

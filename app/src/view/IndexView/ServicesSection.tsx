@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Card,
   CardDescription,
@@ -9,7 +9,7 @@ import {
 import { Rocket, Brain, TrendingUp } from "lucide-react";
 const ServicesSection = ({ language }: any) => {
   return (
-    <motion.section
+    <m.section
       id="services"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -18,7 +18,7 @@ const ServicesSection = ({ language }: any) => {
       className="py-20 px-4 bg-gray-50"
     >
       <div className="max-w-6xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -42,11 +42,12 @@ const ServicesSection = ({ language }: any) => {
               </>
             )}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
+              id: "ai-mvp",
               icon: Brain,
               title: (
                 <>
@@ -77,6 +78,7 @@ const ServicesSection = ({ language }: any) => {
               ),
             },
             {
+              id: "complete-launch",
               icon: Rocket,
               title: (
                 <>
@@ -106,6 +108,7 @@ const ServicesSection = ({ language }: any) => {
               ),
             },
             {
+              id: "scaling-sales",
               icon: TrendingUp,
               title: (
                 <>
@@ -133,8 +136,8 @@ const ServicesSection = ({ language }: any) => {
               ),
             },
           ].map((service, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={service.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -143,13 +146,13 @@ const ServicesSection = ({ language }: any) => {
             >
               <Card className="border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 text-center h-full">
                 <CardHeader>
-                  <motion.div
+                  <m.div
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                     className="mx-auto p-3 bg-gray-900 rounded-full w-fit mb-4"
                   >
                     <service.icon className="h-8 w-8 text-white" />
-                  </motion.div>
+                  </m.div>
                   <CardTitle className="text-xl text-gray-900">
                     {service.title}
                   </CardTitle>
@@ -158,11 +161,11 @@ const ServicesSection = ({ language }: any) => {
                   </CardDescription>
                 </CardHeader>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
-    </motion.section>
+    </m.section>
   );
 };
 

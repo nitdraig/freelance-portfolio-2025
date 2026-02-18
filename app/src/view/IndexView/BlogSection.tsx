@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 
 interface BlogPost {
   id: string;
@@ -23,9 +24,20 @@ interface BlogPost {
   date: string;
 }
 
+async function fetchPosts(lang: "en" | "es"): Promise<BlogPost[]> {
+  const response = await fetch(
+    `https://${lang}.blog.agustin.top/api/posts`
+  );
+  if (!response.ok) throw new Error("Failed to fetch posts");
+  const data = await response.json();
+  return data.slice(0, 3);
+}
+
 const BlogSection = ({ language }: { language: "en" | "es" }) => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: posts = [], isLoading: loading } = useQuery({
+    queryKey: ["blog-posts", language],
+    queryFn: () => fetchPosts(language),
+  });
 
   const content = {
     en: {
@@ -44,29 +56,8 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
     },
   };
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `https://${language}.blog.agustin.top/api/posts`
-        );
-        if (!response.ok) throw new Error("Failed to fetch posts");
-        const data = await response.json();
-        setPosts(data.slice(0, 3));
-      } catch (err) {
-        console.error(err);
-        setPosts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, [language]);
-
   return (
-    <motion.section
+    <m.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -76,7 +67,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -89,7 +80,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {content[language].blog.subtitle}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Posts */}
         {loading ? (
@@ -97,7 +88,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post, index) => (
-              <motion.div
+              <m.div
                 key={post.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +99,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
                 <Card className="border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group h-full">
                   <div className="h-48 bg-gray-900 flex items-center justify-center relative overflow-hidden">
                     {/* <img src={post.image} alt="" className="w-full " /> */}
-                    <motion.div
+                    <m.div
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.3 }}
                       className="text-center p-6"
@@ -122,7 +113,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
                       <h3 className="text-lg font-bold leading-tight text-white">
                         {post.title}
                       </h3>
-                    </motion.div>
+                    </m.div>
                   </div>
                   <CardHeader>
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
@@ -139,7 +130,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <motion.div
+                      <m.div
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.2 }}
                       >
@@ -150,24 +141,24 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
                           {language === "en" ? "Read More" : "Leer Más"}
                           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                      </motion.div>
+                      </m.div>
                     </Link>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         )}
 
         {/* CTA */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.6 }}
           className="text-center mt-12"
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               variant="outline"
               size="lg"
@@ -179,10 +170,10 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
-    </motion.section>
+    </m.section>
   );
 };
 

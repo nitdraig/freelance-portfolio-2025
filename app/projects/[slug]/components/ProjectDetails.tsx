@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle, ExternalLink, Github, Heart } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -45,7 +45,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
 
   return (
     <section className="py-20 px-4 bg-white text-black">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -56,7 +56,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">
             {/* Challenge */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -68,10 +68,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
               <p className="text-gray-700 leading-relaxed">
                 {project.challenge?.[lang] ?? emptyMessage(lang, "challenge")}
               </p>
-            </motion.div>
+            </m.div>
 
             {/* Solution */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -83,10 +83,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
               <p className="text-gray-700 leading-relaxed">
                 {project.solution?.[lang] ?? emptyMessage(lang, "solution")}
               </p>
-            </motion.div>
+            </m.div>
 
             {/* Results */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -98,8 +98,8 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
               <div className="grid md:grid-cols-2 gap-4">
                 {project.results?.[lang]?.length ? (
                   project.results[lang].map((result, index) => (
-                    <motion.div
-                      key={index}
+                    <m.div
+                      key={`${result}-${index}`}
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
@@ -111,19 +111,19 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
                         <CheckCircle className="h-4 w-4 text-green-600" />
                       </div>
                       <span className="text-gray-900 font-medium">{result}</span>
-                    </motion.div>
+                    </m.div>
                   ))
                 ) : (
                   <p>{emptyMessage(lang, "results")}</p>
                 )}
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Sidebar */}
           <div className="space-y-8">
             {/* Technologies */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -139,11 +139,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
                   <div className="flex flex-wrap gap-2">
                     {project.tags?.length ? (
                       project.tags.map((tech) => (
-                        <motion.div key={tech} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <m.div key={tech} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                           <Badge variant="secondary" className="bg-gray-100 text-gray-700">
                             {tech}
                           </Badge>
-                        </motion.div>
+                        </m.div>
                       ))
                     ) : (
                       <p>{emptyMessage(lang, "tags")}</p>
@@ -151,10 +151,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
 
             {/* Project Links */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -168,14 +168,14 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {project.demoUrl && (
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <m.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button className="w-full justify-start">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                           {lang === "en" ? "Live Demo" : "Demo en Vivo"}
                         </a>
                       </Button>
-                    </motion.div>
+                    </m.div>
                   )}
 
                   {project.githubUrl ? (
@@ -193,10 +193,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project, language }) =>
                   )}
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

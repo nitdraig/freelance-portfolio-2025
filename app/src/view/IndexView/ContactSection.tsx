@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -135,7 +135,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
   const isEs = language === "es";
 
   return (
-    <motion.section
+    <m.section
       id="contact"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -144,7 +144,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
       className="py-20 px-4 bg-gray-50"
     >
       <div className="max-w-4xl mx-auto">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -159,9 +159,9 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
               ? "Cuéntame sobre tu proyecto y te ayudo a convertirlo en realidad en tiempo récord."
               : "Tell me about your project and I'll help you turn it into reality in record time."}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -185,7 +185,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -206,8 +206,8 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                       className="border-gray-300 focus:border-gray-900"
                       placeholder={isEs ? "Ej: Juan Pérez" : "e.g. John Smith"}
                     />
-                  </motion.div>
-                  <motion.div
+                  </m.div>
+                  <m.div
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -228,10 +228,10 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                       className="border-gray-300 focus:border-gray-900"
                       placeholder={isEs ? "Tu correo" : "Your Email"}
                     />
-                  </motion.div>
+                  </m.div>
                 </div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -261,9 +261,9 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -293,9 +293,9 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -325,9 +325,9 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -359,9 +359,9 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -383,9 +383,9 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                       isEs ? "Algo más que quieras contar" : "Anything else you want to share"
                     }
                   />
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -408,11 +408,11 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                         : "Submit request"}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </motion.div>
+                </m.div>
               </form>
             </CardContent>
           </Card>
-        </motion.div>
+        </m.div>
       </div>
 
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
@@ -440,7 +440,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </motion.section>
+    </m.section>
   );
 };
 

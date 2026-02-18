@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -68,13 +68,14 @@ export function HeroSection({ language }: any) {
           src="/agustin-hero.webp?height=1080&width=1920"
           alt="Developer workspace background"
           fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover object-center"
           priority
         />
       </div>
 
       {/* Hero Content */}
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -82,12 +83,12 @@ export function HeroSection({ language }: any) {
       >
         {/* Left Column - Text Content */}
         <div className="text-white">
-          <motion.div variants={itemVariants} className="mt-0">
+          <m.div variants={itemVariants} className="mt-0">
             {/* <Badge
               variant="secondary"
               className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm"
             >
-              <motion.div
+              <m.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 className="w-2 h-2 bg-green-400 rounded-full mr-2"
@@ -95,13 +96,13 @@ export function HeroSection({ language }: any) {
               {language === "es" ? <>Disponible</> : <> Available</>}
             </Badge> */}
 
-            <motion.h1
+            <m.h1
               variants={itemVariants}
               className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
             >
               Agustin Avellaneda
-            </motion.h1>
-            <motion.h2
+            </m.h1>
+            <m.h2
               variants={itemVariants}
               className="text-2xl md:text-3xl font-medium mb-4 text-white/90"
             >
@@ -110,8 +111,8 @@ export function HeroSection({ language }: any) {
               ) : (
                 <> AI-Powered Fullstack Developer & PM</>
               )}
-            </motion.h2>
-            <motion.p
+            </m.h2>
+            <m.p
               variants={itemVariants}
               className="text-xl text-white/80 mb-4 leading-relaxed max-w-3xl"
             >
@@ -127,10 +128,10 @@ export function HeroSection({ language }: any) {
                   AI tools and proven project management methodologies.
                 </>
               )}
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
           {/* Stats */}
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="grid grid-cols-3 gap-4 sm:gap-6 mb-4"
           >
@@ -184,37 +185,37 @@ export function HeroSection({ language }: any) {
               //   ),
               // },
             ].map((stat, index) => (
-              <motion.div
-                key={index}
+              <m.div
+                key={stat.number}
                 whileHover={{ scale: 1.05 }}
                 className="text-center cursor-pointer"
               >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
+                <m.div
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1 + index * 0.2, duration: 0.5 }}
                   className="text-xl sm:text-2xl font-bold text-white mb-1"
                 >
                   {stat.number}
-                </motion.div>
+                </m.div>
                 <div className="text-xs sm:text-sm text-white/70 text-center">{stat.label}</div>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
           {/* Location */}
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex items-center gap-2 mb-4 text-white/70"
           >
             <MapPin className="h-4 w-4" />
             <span> Catamarca, Argentina 🇦🇷</span>
-          </motion.div>
+          </m.div>
           {/* CTAs */}
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 mb-8"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 font-semibold px-8"
@@ -234,8 +235,8 @@ export function HeroSection({ language }: any) {
                 </>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            </m.div>
+            <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
                 variant="outline"
@@ -249,8 +250,8 @@ export function HeroSection({ language }: any) {
               >
                 {language === "es" ? <>Hablemos!</> : <>Let's talk!</>}
               </Button>
-            </motion.div>
-            {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            </m.div>
+            {/* <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
                 variant="ghost"
@@ -259,13 +260,13 @@ export function HeroSection({ language }: any) {
                 <Download className="mr-2 h-4 w-4" />
                 {language === "es" ? <>Hablemos!</> : <>Let's talk!</>}
               </Button>
-            </motion.div> */}
-          </motion.div>
+            </m.div> */}
+          </m.div>
           {/* Social Links */}
-          <motion.div variants={itemVariants} className="flex gap-4">
-            {socials.map(({ icon: Icon, url }, index) => (
-              <motion.div
-                key={index}
+          <m.div variants={itemVariants} className="flex gap-4">
+            {socials.map(({ icon: Icon, url }) => (
+              <m.div
+                key={url}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -277,13 +278,13 @@ export function HeroSection({ language }: any) {
                 >
                   <Icon className="h-5 w-5" />
                 </Button>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Right Column - Profile Image */}
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="flex justify-center lg:justify-end"
         >
@@ -305,35 +306,36 @@ export function HeroSection({ language }: any) {
                   size: "w-14 h-14",
                 },
               ].map(({ Icon, position, size }, index) => (
-                <motion.div
-                  key={index}
+                <m.div
+                  key={position}
                   variants={floatingVariants}
                   animate="animate"
                   style={{ animationDelay: `${index * 0.5}s` }}
                   className={`absolute ${position} ${size} bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center`}
                 >
                   <Icon className="h-6 w-6 md:h-8 md:w-8 text-white" />
-                </motion.div>
+                </m.div>
               ))}
 
               {/* Main Profile Image */}
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm shadow-2xl"
               >
                 <Image
-                  src="/profile.jpg?height=400&width=400"
+                  src="/profile.webp?height=400&width=400"
                   alt="Agustin Avellaneda - AI-Powered Developer"
                   fill
+                  sizes="(max-width: 768px) 80vw, 400px"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent"></div>
-              </motion.div>
+              </m.div>
 
               {/* Floating Achievement Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
+              <m.div
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.5, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
@@ -343,7 +345,7 @@ export function HeroSection({ language }: any) {
                   variant="secondary"
                   className="mb-4 bg-white text-black border-white/30 backdrop-blur-sm"
                 >
-                  <motion.div
+                  <m.div
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{
                       duration: 2,
@@ -353,11 +355,11 @@ export function HeroSection({ language }: any) {
                   />
                   {language === "es" ? <>Disponible</> : <> Available</>}
                 </Badge>
-              </motion.div>
+              </m.div>
 
               {/* Floating Tech Stack */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
+              <m.div
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 2, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
@@ -369,27 +371,27 @@ export function HeroSection({ language }: any) {
                     React • AI • Node.js
                   </span>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
       >
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <motion.div
+          <m.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
             className="w-1 h-3 bg-white/60 rounded-full mt-2"
           />
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

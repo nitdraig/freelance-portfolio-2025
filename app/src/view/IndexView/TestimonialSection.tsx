@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
   Card,
@@ -76,7 +76,7 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
   };
 
   return (
-    <motion.section
+    <m.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -85,7 +85,7 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
     >
       <div className="max-w-4xl mx-auto">
         {/* Title */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -95,7 +95,7 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             {language === "en" ? "Testimonials" : "Testimonios"}
           </h2>
-        </motion.div>
+        </m.div>
 
         {/* Carousel Container */}
         <div
@@ -105,14 +105,14 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
         >
           {/* Carousel Content */}
           <div className="overflow-hidden">
-            <motion.div
+            <m.div
               className="flex"
               animate={{ x: `-${currentIndex * 100}%` }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              {localizedTestimonials.map((testimonial, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-4">
-                  <motion.div
+              {localizedTestimonials.map((testimonial) => (
+                <div key={`${testimonial.name}-${testimonial.role}`} className="w-full flex-shrink-0 px-4">
+                  <m.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -123,15 +123,15 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
                       <CardHeader>
                         <div className="flex items-center gap-1 mb-4 justify-center">
                           {[...Array(5)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, scale: 0 }}
+                            <m.div
+                              key={`star-${i}`}
+                              initial={{ opacity: 0, scale: 0.95 }}
                               whileInView={{ opacity: 1, scale: 1 }}
                               viewport={{ once: true }}
                               transition={{ delay: 0.5 + i * 0.1, duration: 0.3 }}
                             >
                               <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                            </motion.div>
+                            </m.div>
                           ))}
                         </div>
                         <CardDescription className="text-gray-600 text-lg text-center leading-relaxed">
@@ -140,12 +140,12 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
                       </CardHeader>
                       <CardContent>
                         <div className="flex items-center gap-3 justify-center">
-                          <motion.div
+                          <m.div
                             whileHover={{ scale: 1.1 }}
                             className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-white font-bold text-lg"
                           >
                             {testimonial.name.charAt(0)}
-                          </motion.div>
+                          </m.div>
                           <div className="text-center">
                             <p className="font-semibold text-gray-900 text-lg">
                               {testimonial.name}
@@ -157,10 +157,10 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
                         </div>
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  </m.div>
                 </div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Navigation Buttons */}
@@ -182,9 +182,9 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
 
           {/* Indicators */}
           <div className="flex justify-center gap-2 mt-8">
-            {localizedTestimonials.map((_, index) => (
+            {localizedTestimonials.map((testimonial, index) => (
               <button
-                key={index}
+                key={`${testimonial.name}-${testimonial.role}`}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentIndex
                   ? "bg-gray-900 scale-110"
@@ -196,7 +196,7 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
           </div>
         </div>
       </div>
-    </motion.section>
+    </m.section>
   );
 };
 

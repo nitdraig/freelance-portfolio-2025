@@ -2,8 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,7 @@ const Footer = () => {
     { icon: Mail, url: "me@agustin.top" },
   ];
   return (
-    <motion.footer
+    <m.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -28,7 +27,7 @@ const Footer = () => {
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -39,18 +38,18 @@ const Footer = () => {
               Agustin Avellaneda
             </h3>
             {/* <p className="text-gray-600">{content[language].footer.tagline}</p> */}
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex gap-4"
           >
-            {socials.map(({ icon: Icon, url }, index) => (
-              <motion.div
-                key={index}
+            {socials.map(({ icon: Icon, url }) => (
+              <m.div
+                key={url}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -62,14 +61,14 @@ const Footer = () => {
                 >
                   <Icon className="h-5 w-5" />
                 </Button>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
         <Separator className="my-8 bg-gray-200" />
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -77,9 +76,9 @@ const Footer = () => {
           className="text-center text-gray-500"
         >
           <p>&copy; 2025 Agustin Avellaneda. All rights reserved.</p>
-        </motion.div>
+        </m.div>
       </div>
-    </motion.footer>
+    </m.footer>
   );
 };
 
