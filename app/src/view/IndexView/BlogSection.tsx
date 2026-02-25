@@ -126,7 +126,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
                   </CardHeader>
                   <CardContent>
                     <Link
-                      href={`https://${language}.blog.agustin.top/posts/${post.id}`}
+                      href={`https://blog.agustin.top/posts/${post.id}?locale=${language}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -165,7 +165,7 @@ const BlogSection = ({ language }: { language: "en" | "es" }) => {
               className="border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold px-8 bg-transparent"
               asChild
             >
-              <Link href={`https://${language}.blog.agustin.top/posts`}>
+              <Link href={`https://blog.agustin.top/posts?locale=${language}`}>
                 {language === "en" ? "View All Posts" : "Ver Todos los Posts"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
