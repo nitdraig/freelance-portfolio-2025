@@ -26,7 +26,7 @@ interface BlogPost {
 
 async function fetchPosts(lang: "en" | "es"): Promise<BlogPost[]> {
   const response = await fetch(
-    `https://${lang}.blog.agustin.top/api/posts`
+    `https://blog.agustin.top/api/posts?locale=${lang}`
   );
   if (!response.ok) throw new Error("Failed to fetch posts");
   const data = await response.json();
