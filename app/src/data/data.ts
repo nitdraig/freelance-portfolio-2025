@@ -20,8 +20,8 @@ export const projects = [
       es: "Plataforma de logística colaborativa para corredores para compartir gastos de viaje y alojamiento.",
     },
     description: {
-      en: "A strategic co-founded project designed to centralize race logistics. I led the technical architecture and development of the MVP, creating a platform where runners can find events, coordinate shared transportation, and manage lodging in a social, community-driven environment.",
-      es: "Un proyecto de co-fundación estratégica diseñado para centralizar la logística de carreras. Lideré la arquitectura técnica y el desarrollo del MVP, creando una plataforma donde los corredores pueden encontrar eventos, coordinar transporte compartido y gestionar alojamiento en un entorno social impulsado por la comunidad.",
+      en: "A strategic co-founded project designed to centralize race logistics. I lead the technical architecture and development of the MVP, creating a platform where runners can find events, coordinate shared transportation, and manage lodging in a social, community-driven environment.",
+      es: "Un proyecto de co-fundación estratégica diseñado para centralizar la logística de carreras. Lidero la arquitectura técnica y el desarrollo del MVP, creando una plataforma donde los corredores pueden encontrar eventos, coordinar transporte compartido y gestionar alojamiento en un entorno social impulsado por la comunidad.",
     },
     year: 2026,
     icon: MapPin,
