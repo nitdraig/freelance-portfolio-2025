@@ -9,7 +9,7 @@ import {
   MapPin,
 } from "lucide-react";
 export const projects = [
-  /* {
+  {
     slug: "meet-my-race",
     title: {
       en: "MeetMyRace",
@@ -35,8 +35,8 @@ export const projects = [
       "Logistics",
       "Sports Tech",
     ],
-    image: "/project-images/meetmyrace-main.webp",
-    demoUrl: "https://app.meetmyrace.com",
+    image: "/project-images/meetmyrace-landing.webp",
+    demoUrl: "https://meetmyrace.com",
 
     challenge: {
       es: "Resolver la fragmentación de información logística para corredores y facilitar el contacto seguro para compartir gastos. El desafío consistió en construir un MVP funcional en 90 días que integrara un motor de búsqueda de carreras, un sistema de estados logísticos y mensajería en tiempo real.",
@@ -66,7 +66,7 @@ export const projects = [
     },
     featured: true,
     status: "active",
-  },*/
+  },
   {
     slug: "around-notes-blog",
     title: {
