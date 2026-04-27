@@ -129,6 +129,17 @@ export function HeroSection({ language }: any) {
                 </>
               )}
             </m.p>
+            <m.p variants={itemVariants} className="text-sm text-white/80 mb-4 leading-relaxed max-w-3xl">
+              {language === "es" ? (
+                <>
+                  Fundador & CEO de <a className="text-white underline" href="http://excelso.xyz" target="_blank" rel="noopener noreferrer">Ex<span className="text-red-500">c</span>elso</a>
+                </>
+              ) : (
+                <>
+                  Founder & CEO of <a className="text-white underline" href="http://excelso.xyz" target="_blank" rel="noopener noreferrer">Ex<span className="text-red-500">c</span>elso</a>
+                </>
+              )}
+            </m.p>
           </m.div>
           {/* Stats */}
           <m.div
