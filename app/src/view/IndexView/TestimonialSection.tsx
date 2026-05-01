@@ -13,37 +13,64 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 const testimonials = {
   en: [
     {
+      text: "Working with Agustín is one of those experiences that confirm that young talent is more alive than ever. I met him at a talk, I shared an idea with him, and soon we were working together with a harmony that is not easy to achieve. What stands out the most is not only his ability to materialize any vision, but the aesthetic care with which it is done: clean, modern, with criteria.Added to this is a responsibility and commitment that is evident in each delivery.",
+      name: "Emiliano Salas Porta",
+      role: "CEO at ",
+      companyName: "MeetMyRace",
+      companyUrl: "https://meetmyrace.com",
+    },
+    {
       text: "Exceptionally talented, flexible, good eye for frontend and detail. Trustworthy.",
       name: "Mike Massoud",
-      role: "CEO at AroundNotes",
+      role: "CEO at ",
+      companyName: "AroundNotes",
+      companyUrl: "https://aroundnotes.com",
     },
     {
       text: "Agustín has demonstrated a notorious ability to transform complex visions into tangible products. Its approach is practical and results -oriented, with a responsibility and discipline that guarantee the fulfillment of the deadlines. ",
       name: "Pablo Vegvarel",
-      role: "CEO at Experimental Global",
+      role: "CEO at ",
+      companyName: "Experimental Global",
+      companyUrl: "https://experimental.global",
     },
     {
       text: "Agustín is an exceptionally intelligent and strategic individual, capable of tackling the most complex challenges with clarity and precision. His professionalism and ability to think long-term make him an invaluable contributor to any team.",
       name: "Manuel Esteban Florez Lopez",
-      role: "CTO at InkuA",
+      role: "CTO at",
+      companyName: "InkuA",
+      companyUrl: "https://inkua.de",
     },
   ],
   es: [
     {
+      text: "Trabajar con Agustín es una de esas experiencias que confirman que el talento joven está más vivo que nunca. Lo conocí en una charla, le compartí una idea, y al toque estábamos trabajando juntos con una sintonía que no es fácil de lograr. Lo que más destaco no es solo su capacidad de materializar cualquier visión, sino el cuidado estético con el que lo hace: limpio, moderno, con criterio. A eso se suma una responsabilidad y compromiso que se notan en cada entrega.",
+      name: "Emiliano Salas Porta",
+      role: "CEO en ",
+      companyName: "MeetMyRace",
+      companyUrl: "https://meetmyrace.com",
+    },
+    {
       text: "Excepcionalmente talentoso, flexible, buen ojo para frontend y sus detalles. Confiable.",
       name: "Mike Massoud",
-      role: "CEO en AroundNotes",
+      role: "CEO en ",
+      companyName: "AroundNotes",
+      companyUrl: "https://aroundnotes.com",
     },
     {
       text: "Agustín ha demostrado una notoria habilidad para transformar visiones complejas en productos tangibles. Su enfoque es práctico y orientado a resultados, con una responsabilidad y disciplina que garantizan el cumplimiento de los plazos. ",
       name: "Pablo Vegvarel",
-      role: "CEO en Experimental Global",
+      role: "CEO en ",
+      companyName: "Experimental Global",
+      companyUrl: "https://experimental.global",
     },
     {
       text: "Agustín es un individuo excepcionalmente inteligente y estratégico, capaz de abordar los desafíos más complejos con claridad y precisión. Su profesionalismo y su capacidad para pensar a largo plazo lo convierten en un contribuyente invaluable a cualquier equipo ",
       name: "Manuel Esteban Florez Lopez",
-      role: "CTO en InkuA",
+      role: "CTO en ",
+      companyName: "InkuA",
+      companyUrl: "https://inkua.de",
     },
+
   ],
 };
 
@@ -151,7 +178,7 @@ const TestimonialSection = ({ language }: { language: "en" | "es" }) => {
                               {testimonial.name}
                             </p>
                             <p className="text-sm text-gray-500">
-                              {testimonial.role}
+                              {testimonial.role}  <a href={testimonial.companyUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 hover:underline"> {testimonial.companyName} </a>
                             </p>
                           </div>
                         </div>
