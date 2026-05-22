@@ -37,7 +37,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               Agustin Avellaneda
             </h3>
-            {/* <p className="text-gray-600">{content[language].footer.tagline}</p> */}
+
           </m.div>
 
           <m.div
@@ -75,7 +75,8 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center text-gray-500"
         >
-          <p>&copy; 2025 Agustin Avellaneda. All rights reserved.</p>
+          <p>&copy; 2026 Agustin Avellaneda. All rights reserved.</p>
+          <p>CEO in  <a href="https://www.excelso.xyz" className="text-red-600">Excelso</a></p>
         </m.div>
       </div>
     </m.footer>

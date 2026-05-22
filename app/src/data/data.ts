@@ -11,6 +11,67 @@ import {
 } from "lucide-react";
 export const projects = [
   {
+    slug: "experimental-global-app-landing",
+    title: {
+      en: "Experimental Global App & Landing",
+      es: "Experimental Global App & Landing",
+    },
+    shortDescription: {
+      en: "Internal platform and marketing site for EXPERIMENTAL Global hackathon operations",
+      es: "Plataforma interna y sitio de marketing para la operación de hackathones de EXPERIMENTAL Global",
+    },
+    description: {
+      en: "Platform built for the EXPERIMENTAL Global team to streamline communication, coordination, direction, and review of hackathon challenges. It connects organizations with real challenges and global talent to design, execute, and validate technology solutions—validated projects can receive compensation or be spun out as startups. I delivered the bilingual marketing landing (Astro 6, Tailwind CSS v4) and the production web app (Next.js 16, Express, MongoDB) with role-based dashboards, challenge lifecycle, teams, submissions, mentor scoring, and admin analytics.",
+      es: "Plataforma diseñada para el equipo de EXPERIMENTAL Global con el fin de facilitar la comunicación, el orden, la dirección y la revisión de desafíos de hackathon. Conecta organizaciones con retos reales y talento global para diseñar, ejecutar y validar soluciones tecnológicas; los proyectos validados acceden a compensación o se constituyen como startups. Desarrollé el landing bilingüe (Astro 6, Tailwind CSS v4) y la aplicación en producción (Next.js 16, Express, MongoDB) con dashboards por rol, ciclo de vida de retos, equipos, entregas, evaluación por mentores y analíticas de administración.",
+    },
+    year: 2026,
+    icon: Globe,
+    color: "from-indigo-600 to-violet-800",
+    tags: [
+      "Astro",
+      "Next.js",
+      "Express",
+      "MongoDB",
+      "TypeScript",
+      "React Query",
+      "Tailwind CSS",
+      "Hackathon",
+    ],
+    image: "/project-images/experimental-global.webp",
+    demoUrl: "https://experimental.global",
+
+    challenge: {
+      es: "Construir un producto dual para el equipo de EXPERIMENTAL Global: un landing editorial bilingüe (~25 rutas, SEO) que comunique el valor del ecosistema, y una plataforma operativa donde el equipo y las organizaciones gestionen hackathones de punta a punta—publicación de retos, formación de equipos, check-in, entregas de demos y revisión por mentores/jueces. El reto incluía seis roles con permisos distintos, autenticación multi-proveedor, flujos de scoring, archivos (PDF en Cloudinary), i18n sin duplicar URLs por idioma y despliegue listo para producción.",
+      en: "Build a dual product for the EXPERIMENTAL Global team: a bilingual editorial landing (~25 routes, SEO) that communicates the ecosystem value, and an operational platform where the team and organizations run hackathons end to end—challenge publishing, team formation, check-in, demo submissions, and mentor/judge review. The challenge included six roles with distinct permissions, multi-provider auth, scoring workflows, file handling (PDF via Cloudinary), i18n without locale-prefixed URLs, and production-ready deployment.",
+    },
+    solution: {
+      es: "Implementé el landing estático con Astro 6 y un sistema i18n propio (paneles EN/ES, localStorage, alias en español como /acerca y /verticales), con explorador de verticales, marketplace de retos con modales accesibles y páginas de servicios para SEO. Para la plataforma, desarrollé una API REST en Express por dominios (auth, users, challenges, teams, participations, demos, analytics) y frontend Next.js 16 con React Query y dashboards por rol (developer, organization, mentor, judge, admin, superadmin), equipos con códigos de invitación y entregas con estados draft→submitted→evaluating.",
+      en: "Built the static landing with Astro 6 and a custom i18n system (EN/ES panels, localStorage, Spanish URL aliases such as /acerca and /verticales), a verticals explorer, an accessible challenges marketplace with modals, and SEO service pages. For the platform, developed a domain-driven Express REST API (auth, users, challenges, teams, participations, demos, analytics) and a Next.js 16 frontend with React Query and role-based dashboards (developer, organization, mentor, judge, admin, superadmin), teams with invite codes, and submissions with draft→submitted→evaluating states.",
+    },
+    results: {
+      es: [
+        "Landing bilingüe EN/ES con diseño editorial y ~25 rutas optimizadas para SEO",
+        "Plataforma operativa para comunicación, orden y revisión de hackathones",
+        "Conexión organizaciones–talento global: diseñar, ejecutar y validar soluciones",
+        "6 roles con dashboards dedicados y ciclo completo de retos",
+        "Autenticación JWT + OAuth (Google, GitHub) con verificación de email",
+        "API REST modular (Express + MongoDB) con analíticas para administradores",
+        "Despliegue preparado para producción (Docker Compose, Vercel)",
+      ],
+      en: [
+        "Bilingual EN/ES landing with editorial design and ~25 SEO-optimized routes",
+        "Operational platform for hackathon communication, coordination, and review",
+        "Organization–global talent connection: design, execute, and validate solutions",
+        "6 roles with dedicated dashboards and full challenge lifecycle",
+        "JWT + OAuth authentication (Google, GitHub) with email verification",
+        "Modular REST API (Express + MongoDB) with admin analytics",
+        "Production-ready deployment (Docker Compose, Vercel)",
+      ],
+    },
+    featured: true,
+    status: "active",
+  },
+  {
     slug: "meet-my-race",
     title: {
       en: "MeetMyRace",
@@ -68,67 +129,7 @@ export const projects = [
     featured: true,
     status: "active",
   },
-  {
-    slug: "experimental-global-app-landing",
-    title: {
-      en: "Experimental Global App & Landing",
-      es: "Experimental Global App & Landing",
-    },
-    shortDescription: {
-      en: "Internal platform and marketing site for EXPERIMENTAL Global hackathon operations",
-      es: "Plataforma interna y sitio de marketing para la operación de hackathones de EXPERIMENTAL Global",
-    },
-    description: {
-      en: "Platform built for the EXPERIMENTAL Global team to streamline communication, coordination, direction, and review of hackathon challenges. It connects organizations with real challenges and global talent to design, execute, and validate technology solutions—validated projects can receive compensation or be spun out as startups. I delivered the bilingual marketing landing (Astro 6, Tailwind CSS v4) and the production web app (Next.js 16, Express, MongoDB) with role-based dashboards, challenge lifecycle, teams, submissions, mentor scoring, and admin analytics.",
-      es: "Plataforma diseñada para el equipo de EXPERIMENTAL Global con el fin de facilitar la comunicación, el orden, la dirección y la revisión de desafíos de hackathon. Conecta organizaciones con retos reales y talento global para diseñar, ejecutar y validar soluciones tecnológicas; los proyectos validados acceden a compensación o se constituyen como startups. Desarrollé el landing bilingüe (Astro 6, Tailwind CSS v4) y la aplicación en producción (Next.js 16, Express, MongoDB) con dashboards por rol, ciclo de vida de retos, equipos, entregas, evaluación por mentores y analíticas de administración.",
-    },
-    year: 2025,
-    icon: Globe,
-    color: "from-indigo-600 to-violet-800",
-    tags: [
-      "Astro",
-      "Next.js",
-      "Express",
-      "MongoDB",
-      "TypeScript",
-      "React Query",
-      "Tailwind CSS",
-      "Hackathon",
-    ],
-    image: "/project-images/experimental-global.webp",
-    demoUrl: "https://experimental.global",
 
-    challenge: {
-      es: "Construir un producto dual para el equipo de EXPERIMENTAL Global: un landing editorial bilingüe (~25 rutas, SEO) que comunique el valor del ecosistema, y una plataforma operativa donde el equipo y las organizaciones gestionen hackathones de punta a punta—publicación de retos, formación de equipos, check-in, entregas de demos y revisión por mentores/jueces. El reto incluía seis roles con permisos distintos, autenticación multi-proveedor, flujos de scoring, archivos (PDF en Cloudinary), i18n sin duplicar URLs por idioma y despliegue listo para producción.",
-      en: "Build a dual product for the EXPERIMENTAL Global team: a bilingual editorial landing (~25 routes, SEO) that communicates the ecosystem value, and an operational platform where the team and organizations run hackathons end to end—challenge publishing, team formation, check-in, demo submissions, and mentor/judge review. The challenge included six roles with distinct permissions, multi-provider auth, scoring workflows, file handling (PDF via Cloudinary), i18n without locale-prefixed URLs, and production-ready deployment.",
-    },
-    solution: {
-      es: "Implementé el landing estático con Astro 6 y un sistema i18n propio (paneles EN/ES, localStorage, alias en español como /acerca y /verticales), con explorador de verticales, marketplace de retos con modales accesibles y páginas de servicios para SEO. Para la plataforma, desarrollé una API REST en Express por dominios (auth, users, challenges, teams, participations, demos, analytics) y frontend Next.js 16 con React Query y dashboards por rol (developer, organization, mentor, judge, admin, superadmin), equipos con códigos de invitación y entregas con estados draft→submitted→evaluating.",
-      en: "Built the static landing with Astro 6 and a custom i18n system (EN/ES panels, localStorage, Spanish URL aliases such as /acerca and /verticales), a verticals explorer, an accessible challenges marketplace with modals, and SEO service pages. For the platform, developed a domain-driven Express REST API (auth, users, challenges, teams, participations, demos, analytics) and a Next.js 16 frontend with React Query and role-based dashboards (developer, organization, mentor, judge, admin, superadmin), teams with invite codes, and submissions with draft→submitted→evaluating states.",
-    },
-    results: {
-      es: [
-        "Landing bilingüe EN/ES con diseño editorial y ~25 rutas optimizadas para SEO",
-        "Plataforma operativa para comunicación, orden y revisión de hackathones",
-        "Conexión organizaciones–talento global: diseñar, ejecutar y validar soluciones",
-        "6 roles con dashboards dedicados y ciclo completo de retos",
-        "Autenticación JWT + OAuth (Google, GitHub) con verificación de email",
-        "API REST modular (Express + MongoDB) con analíticas para administradores",
-        "Despliegue preparado para producción (Docker Compose, Vercel)",
-      ],
-      en: [
-        "Bilingual EN/ES landing with editorial design and ~25 SEO-optimized routes",
-        "Operational platform for hackathon communication, coordination, and review",
-        "Organization–global talent connection: design, execute, and validate solutions",
-        "6 roles with dedicated dashboards and full challenge lifecycle",
-        "JWT + OAuth authentication (Google, GitHub) with email verification",
-        "Modular REST API (Express + MongoDB) with admin analytics",
-        "Production-ready deployment (Docker Compose, Vercel)",
-      ],
-    },
-    featured: true,
-    status: "active",
-  },
   {
     slug: "around-notes-blog",
     title: {
