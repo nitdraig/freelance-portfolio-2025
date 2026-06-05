@@ -33,13 +33,11 @@ import {
   DECISION_OPTIONS,
 } from "@/app/src/lib/contact/schema";
 import { submitDiscoveryForm } from "@/app/actions/submitDiscoveryForm";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const ContactSection = ({ language }: { language: "es" | "en" }) => {
   const [loading, setLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const formOpenTimestampRef = useRef<number>(0);
-  const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
     formOpenTimestampRef.current = Date.now();
@@ -55,6 +53,7 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
     message: "",
   });
   const [honeypot, setHoneypot] = useState("");
+  const [honeypotCompany, setHoneypotCompany] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,28 +66,14 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
     }
     setLoading(true);
 
-    let recaptchaToken: string | undefined;
-    if (typeof executeRecaptcha === "function") {
-      try {
-        recaptchaToken = await Promise.race([
-          executeRecaptcha("submit"),
-          new Promise<string | undefined>((_, reject) =>
-            setTimeout(() => reject(new Error("timeout")), 8000)
-          ),
-        ]);
-      } catch {
-        recaptchaToken = undefined;
-      }
-    }
-
     try {
       const result = await submitDiscoveryForm({
         ...parsed.data,
         message: formState.message ?? undefined,
         language,
         honeypot: honeypot || undefined,
+        honeypotCompany: honeypotCompany || undefined,
         formOpenTimestamp: formOpenTimestampRef.current,
-        recaptchaToken,
       });
 
       if (result.success) {
@@ -103,6 +88,8 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
           message: "",
         });
         setHoneypot("");
+        setHoneypotCompany("");
+        formOpenTimestampRef.current = Date.now();
       } else {
         const isEs = language === "es";
         switch (result.error) {
@@ -112,11 +99,11 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
           case "too_fast":
             toast.error(isEs ? "Espera unos segundos después de abrir el formulario e intenta de nuevo." : "Wait a few seconds after the form loads, then try again.");
             break;
+          case "expired":
+            toast.error(isEs ? "La sesión del formulario expiró. Recarga la página e intenta de nuevo." : "The form session expired. Reload the page and try again.");
+            break;
           case "rate_limit":
             toast.error(isEs ? "Demasiados envíos. Prueba dentro de una hora." : "Too many submissions. Try again in an hour.");
-            break;
-          case "recaptcha":
-            toast.error(isEs ? "No se pudo verificar que no eres un robot. Recarga la página e intenta de nuevo." : "Could not verify you're human. Reload the page and try again.");
             break;
           case "validation":
             toast.error(result.message || (isEs ? "Revisa los campos." : "Check the fields."));
@@ -170,8 +157,8 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
           <Card className="border-gray-200 shadow-sm">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Honeypot: oculto para usuarios; los bots lo rellenan y rechazamos el envío */}
-                <div aria-hidden="true" className="absolute -left-[9999px] top-0 opacity-0 pointer-events-none">
+                {/* Honeypots: hidden from users; bots often fill these fields */}
+                <div aria-hidden="true" className="absolute -left-[9999px] top-0 opacity-0 pointer-events-none h-0 overflow-hidden">
                   <label htmlFor="website">Website</label>
                   <input
                     id="website"
@@ -181,6 +168,16 @@ const ContactSection = ({ language }: { language: "es" | "en" }) => {
                     autoComplete="off"
                     value={honeypot}
                     onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                  <label htmlFor="company">Company</label>
+                  <input
+                    id="company"
+                    type="text"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypotCompany}
+                    onChange={(e) => setHoneypotCompany(e.target.value)}
                   />
                 </div>
 

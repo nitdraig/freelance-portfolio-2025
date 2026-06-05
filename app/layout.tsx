@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Raleway } from "next/font/google";
-import { ReCaptchaProvider } from "@/app/src/components/ReCaptchaProvider";
 import { MotionProvider } from "@/app/src/components/MotionProvider";
 import { QueryProvider } from "./src/components/QueryProvider";
 const raleway = Raleway({ subsets: ["latin"], weight: "400" });
@@ -71,11 +70,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <ReCaptchaProvider>
-          <QueryProvider>
-            <MotionProvider>{children}</MotionProvider>
-          </QueryProvider>
-        </ReCaptchaProvider>
+        <QueryProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </QueryProvider>
       </body>
     </html>
   );

@@ -2,56 +2,37 @@
 
 import { headers } from "next/headers";
 import { discoveryFormSchema, formatDiscoveryBodyForOwner } from "@/app/src/lib/contact/schema";
+import { validateAntiSpam } from "@/app/src/lib/contact/antiSpam";
+import { checkContactRateLimit } from "@/app/src/lib/contact/rateLimit";
 import { sendThankYouEmail } from "./sendThankYouEmail";
 
-const MIN_FORM_OPEN_SECONDS = 3;
-const RATE_LIMIT_MAX_SUBMISSIONS = 3;
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hora
-
-const rateLimitMap = new Map<string, number[]>();
-
-function getClientIp(): string {
+async function getClientIp(): Promise<string> {
   try {
-    const h = headers();
+    const h = await headers();
     const forwarded = h.get("x-forwarded-for");
     if (forwarded) return forwarded.split(",")[0].trim();
     const real = h.get("x-real-ip");
     if (real) return real;
   } catch {
-    /* server component */
+    /* headers unavailable */
   }
   return "unknown";
 }
 
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  let list = rateLimitMap.get(ip) ?? [];
-  list = list.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
-  if (list.length >= RATE_LIMIT_MAX_SUBMISSIONS) return false;
-  list.push(now);
-  rateLimitMap.set(ip, list);
-  return true;
-}
-
-const RECAPTCHA_MIN_SCORE = 0.3;
-
-async function verifyRecaptcha(token: string, remoteip?: string): Promise<{ success: boolean; score?: number }> {
-  const secret = process.env.RECAPTCHA_SECRET_KEY?.trim();
-  if (!secret) return { success: true };
-  const params = new URLSearchParams({ secret, response: token });
-  if (remoteip) params.set("remoteip", remoteip);
-  const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
-    method: "POST",
-    body: params,
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  });
-  const data = (await res.json()) as { success: boolean; score?: number };
-  return { success: !!data.success, score: data.score };
-}
-
 export type SubmitDiscoveryResult =
   | { success: true }
-  | { success: false; error: "spam" | "too_fast" | "rate_limit" | "recaptcha" | "validation" | "mailprex" | "email"; message?: string };
+  | {
+      success: false;
+      error:
+        | "spam"
+        | "too_fast"
+        | "expired"
+        | "rate_limit"
+        | "validation"
+        | "mailprex"
+        | "email";
+      message?: string;
+    };
 
 export async function submitDiscoveryForm(formData: {
   fullname: string;
@@ -62,37 +43,27 @@ export async function submitDiscoveryForm(formData: {
   decision: "si" | "no";
   message?: string;
   language: "es" | "en";
-  /** Honeypot: debe llegar vacío. Si tiene valor, es bot. */
+  /** Honeypot: must be empty. Bots often fill hidden fields. */
   honeypot?: string;
-  /** Timestamp (ms) de cuando se mostró el formulario. Debe haber pasado al menos MIN_FORM_OPEN_SECONDS. */
+  /** Second honeypot field — must be empty. */
+  honeypotCompany?: string;
+  /** Timestamp (ms) when the form was shown to the user. */
   formOpenTimestamp?: number;
-  /** Token de reCAPTCHA v3 (obligatorio si RECAPTCHA_SECRET_KEY está configurado). */
-  recaptchaToken?: string;
 }): Promise<SubmitDiscoveryResult> {
-  if (formData.honeypot?.trim()) {
-    return { success: false, error: "spam" };
+  const antiSpam = validateAntiSpam({
+    honeypot: formData.honeypot,
+    honeypotCompany: formData.honeypotCompany,
+    formOpenTimestamp: formData.formOpenTimestamp,
+  });
+
+  if (!antiSpam.ok) {
+    return { success: false, error: antiSpam.error };
   }
 
-  const now = Date.now();
-  const openedAt = typeof formData.formOpenTimestamp === "number" ? formData.formOpenTimestamp : 0;
-  if (now - openedAt < MIN_FORM_OPEN_SECONDS * 1000) {
-    return { success: false, error: "too_fast" };
-  }
-
-  const ip = getClientIp();
-  if (!checkRateLimit(ip)) {
+  const ip = await getClientIp();
+  const allowed = await checkContactRateLimit(ip, formData.email);
+  if (!allowed) {
     return { success: false, error: "rate_limit" };
-  }
-
-  const secret = process.env.RECAPTCHA_SECRET_KEY?.trim();
-  if (secret) {
-    if (!formData.recaptchaToken?.trim()) {
-      return { success: false, error: "recaptcha" };
-    }
-    const recaptcha = await verifyRecaptcha(formData.recaptchaToken.trim(), ip);
-    if (!recaptcha.success || (typeof recaptcha.score === "number" && recaptcha.score < RECAPTCHA_MIN_SCORE)) {
-      return { success: false, error: "recaptcha" };
-    }
   }
 
   const parsed = discoveryFormSchema.safeParse({
@@ -113,10 +84,16 @@ export async function submitDiscoveryForm(formData: {
   const data = parsed.data;
   const emailDestiny = process.env.NEXT_PUBLIC_EMAIL_DESTINY?.trim() || "";
   const formToken = process.env.NEXT_PUBLIC_MAILPREX_FORM_TOKEN?.trim() || "";
-  const url = process.env.NEXT_PUBLIC_MAILPREX_URL || "https://api.mailprex.excelso.xyz/email/send";
+  const url =
+    process.env.NEXT_PUBLIC_MAILPREX_URL ||
+    "https://api.mailprex.excelso.xyz/email/send";
 
   if (!emailDestiny || !formToken) {
-    return { success: false, error: "mailprex", message: "Configuración de email faltante" };
+    return {
+      success: false,
+      error: "mailprex",
+      message: "Configuración de email faltante",
+    };
   }
 
   const bodyForOwner = formatDiscoveryBodyForOwner(data, formData.language);
@@ -138,7 +115,11 @@ export async function submitDiscoveryForm(formData: {
     });
     if (!res.ok) {
       const text = await res.text();
-      return { success: false, error: "mailprex", message: text || `HTTP ${res.status}` };
+      return {
+        success: false,
+        error: "mailprex",
+        message: text || `HTTP ${res.status}`,
+      };
     }
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Mailprex error";
