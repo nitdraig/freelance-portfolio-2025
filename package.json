@@ -51,11 +51,12 @@
     "framer-motion": "latest",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
+    "mailprex": "^2.0.0",
     "mongoose": "^8.16.2",
-    "next": "^15.5.9",
-    "next-auth": "^4.24.11",
+    "next": "^16.2.7",
+    "next-auth": "^4.24.14",
     "next-themes": "^0.4.4",
-    "nodemailer": "^8.0.1",
+    "nodemailer": "^8.0.10",
     "react": "^19",
     "react-day-picker": "8.10.1",
     "react-dom": "^19",
@@ -75,8 +76,13 @@
     "@types/nodemailer": "^7.0.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "postcss": "^8.5",
+    "postcss": "^8.5.15",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "^8.5.15",
+    "nodemailer": "^8.0.10",
+    "uuid": "^11.1.0"
   }
 }

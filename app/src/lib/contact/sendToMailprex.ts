@@ -8,7 +8,7 @@ export async function sendToMailprex(payload: {
   formToken: string;
 }): Promise<{ ok: boolean; error?: string }> {
   const url =
-    process.env.NEXT_PUBLIC_MAILPREX_URL ||
+    process.env.MAILPREX_URL ||
     "https://api.mailprex.excelso.xyz/email/send";
   try {
     const res = await fetch(url, {

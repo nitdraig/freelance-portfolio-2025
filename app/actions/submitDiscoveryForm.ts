@@ -82,10 +82,10 @@ export async function submitDiscoveryForm(formData: {
   }
 
   const data = parsed.data;
-  const emailDestiny = process.env.NEXT_PUBLIC_EMAIL_DESTINY?.trim() || "";
-  const formToken = process.env.NEXT_PUBLIC_MAILPREX_FORM_TOKEN?.trim() || "";
+  const emailDestiny = process.env.EMAIL_DESTINY?.trim() || "";
+  const formToken = process.env.MAILPREX_FORM_TOKEN?.trim() || "";
   const url =
-    process.env.NEXT_PUBLIC_MAILPREX_URL ||
+    process.env.MAILPREX_URL ||
     "https://api.mailprex.excelso.xyz/email/send";
 
   if (!emailDestiny || !formToken) {
