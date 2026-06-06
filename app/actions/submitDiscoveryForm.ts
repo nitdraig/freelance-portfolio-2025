@@ -1,7 +1,10 @@
 "use server";
 
 import { headers } from "next/headers";
-import { discoveryFormSchema, formatDiscoveryBodyForOwner } from "@/app/src/lib/contact/schema";
+import {
+  discoveryFormSchema,
+  formatDiscoveryBodyForOwner,
+} from "@/app/src/lib/contact/schema";
 import { validateAntiSpam } from "@/app/src/lib/contact/antiSpam";
 import { checkContactRateLimit } from "@/app/src/lib/contact/rateLimit";
 import { sendThankYouEmail } from "./sendThankYouEmail";
@@ -84,9 +87,7 @@ export async function submitDiscoveryForm(formData: {
   const data = parsed.data;
   const emailDestiny = process.env.EMAIL_DESTINY?.trim() || "";
   const formToken = process.env.MAILPREX_FORM_TOKEN?.trim() || "";
-  const url =
-    process.env.MAILPREX_URL ||
-    "https://api.mailprex.excelso.xyz/email/send";
+  const url = "https://api.mailprex.excelso.xyz/email/send";
 
   if (!emailDestiny || !formToken) {
     return {
