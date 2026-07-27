@@ -8,8 +8,84 @@ import {
   Zap,
   MapPin,
   Globe,
+  LayoutDashboard,
 } from "lucide-react";
 export const projects = [
+  {
+    slug: "flowfolio",
+    title: {
+      en: "Flowfolio",
+      es: "Flowfolio",
+    },
+    shortDescription: {
+      en: "Flowfolio is the command center for freelancers. One complete platform to manage projects, clients, tasks and deliveries.",
+      es: "Flowfolio es el centro de comando para freelancers. Una plataforma completa para gestionar proyectos, clientes, tareas y entregas.",
+    },
+    description: {
+      en: "Flowfolio solves the typical chaos of freelance work: scattered emails, disorganized files, manual updates, and duplicated communication. With Flowfolio, each client has their own mini-dashboard where they can track progress, approve tasks, and communicate. The integrated AI automates repetitive tasks like summaries, frequently asked questions, and task generation from briefs.",
+      es: "Flowfolio resuelve el caos típico del trabajo freelance: emails sueltos, archivos dispersos, actualizaciones manuales y comunicación duplicada. Con Flowfolio, cada cliente tiene su propio mini-dashboard donde puede seguir el progreso, aprobar tareas y comunicarse. La IA integrada automatiza tareas repetitivas como resúmenes, respuestas frecuentes y generación de tareas desde briefs.",
+    },
+    year: 2026,
+    icon: LayoutDashboard,
+    color: "from-blue-600 to-blue-800",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "AI",
+      "Express",
+      "MongoDB",
+      "Excelso",
+      "Freelance",
+    ],
+    image: "/project-images/flowfolio-image.webp",
+    demoUrl: "https://flowfolio.space",
+    challenge: {
+      es: "Crear una plataforma completa para gestionar proyectos, clientes, tareas y entregas. La plataforma debe ser escalable, fácil de usar y debe integrar IA para automatizar tareas repetitivas.",
+      en: "Create a complete platform to manage projects, clients, tasks, and deliveries. The platform must be scalable, easy to use, and must integrate AI to automate repetitive tasks.",
+    },
+    solution: {
+      es: "Desarrollé una plataforma completa usando Next.js y TypeScript, implementando un sistema de gestión de contenido eficiente, implementando categorización especializada, y asegurando que el contenido sea fácilmente navegable tanto para profesionales como para el público general interesado en gestión de proyectos.",
+      en: "Developed a complete platform using Next.js and TypeScript, implementing an efficient content management system, implementing specialized categorization, and ensuring that the content is easily navigable for both professionals and the general public interested in project management.",
+    },
+    results: {
+      es: [
+        "Plataforma completa para gestionar proyectos, clientes, tareas y entregas",
+        "Sistema de gestión de contenido eficiente",
+        "Categorización especializada",
+        "Experiencia de usuario intuitiva",
+        "Integración con IA",
+        "Integración con Excelso",
+        "Integración con Freelance",
+        "Integración con Next.js",
+        "Integración con TypeScript",
+        "Plataforma operativa para comunicación, orden y revisión de hackathones",
+        "Conexión organizaciones–talento global: diseñar, ejecutar y validar soluciones",
+        "Autenticación JWT + OAuth (Google, GitHub) con verificación de email",
+        "API REST modular (Express + MongoDB) con analíticas para administradores",
+        "Despliegue preparado para producción (Docker Compose, Vercel)",
+      ],
+      en: [
+        "Complete platform to manage projects, clients, tasks, and deliveries",
+        "Efficient content management system",
+        "Specialized categorization",
+        "Intuitive user experience",
+        "Integration with AI",
+        "Integration with Excelso",
+        "Integration with Freelance",
+        "Integration with Next.js",
+        "Integration with TypeScript",
+        "Operational platform for hackathon communication, coordination, and review",
+        "Organization–global talent connection: design, execute, and validate solutions",
+        "6 roles with dedicated dashboards and full challenge lifecycle",
+        "JWT + OAuth authentication (Google, GitHub) with email verification",
+        "Modular REST API (Express + MongoDB) with admin analytics",
+        "Production-ready deployment (Docker Compose, Vercel)",
+      ],
+    },
+    featured: true,
+    status: "active",
+  },
   {
     slug: "experimental-global-app-landing",
     title: {
@@ -129,7 +205,6 @@ export const projects = [
     featured: true,
     status: "active",
   },
-
   {
     slug: "around-notes-blog",
     title: {
